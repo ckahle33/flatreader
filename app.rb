@@ -15,7 +15,7 @@ set :views, "views"
 
 get '/' do
   @links = []
-  haml :index
+  haml :index, layout: :main
 end
 
 get '/:site' do
@@ -30,7 +30,7 @@ get '/:site' do
     end
   end
 
-  haml :index
+  haml :site, layout: :main
 end
 
 get '/:story/*' do
@@ -39,24 +39,22 @@ get '/:story/*' do
 
   @story = story.css('main p')
 
-  haml :story
+  haml :story, layout: :main
 end
 
 def link_selector(site)
+  #should live in db
   case site
     when /nytimes/
       'main .story-heading'
     when /cnn/
       'main ul li'
-    end
-end
-
-def body_selector(site)
-  case site
-    when /nytimes/
-      'main .story-heading'
-    when /cnn/
-      'main ul li'
+    when /npr/
+      '#contentWrap .story-wrap'
+    when /fox/
+      'main'
+    when /drudge/
+      'table'
     end
 end
 

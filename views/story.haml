@@ -1,22 +1,2 @@
-%html!
-  %head
-    %link{href: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css", rel: "stylesheet", integrity: "sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ", crossorigin: "anonymous"}
-
-  %body
-    %header.navbar.bg-success{style: "margin-bottom: 1em;"}
-      %a.navbar-brand.text-white{href: "#"}
-        flatreader
-
-    .container-fluid
-      .row
-        .col-3.col-lg-3
-          %ul
-            %li
-              %a{href: "#{base_url}/nytimes.com"}
-                new york times
-            %li
-              %a{href: "#{base_url}/lite.cnn.io"}
-                cnn
-        .col-9.col-lg-9
-          - if @story
-            = @story.to_s
+- if @story
+  = @story.to_s

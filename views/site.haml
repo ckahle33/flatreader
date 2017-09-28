@@ -1,17 +1,8 @@
-%nav
-  flatreader
-
-
-%aside
+- if @links
   %ul
+  - @links.each do |l|
     %li
-      %a{href: "nytimes.com"}
-        new york times
-    %li
-      %a{href: "lite.cnn.io"}
-        cnn
+      -# - raise 'hi'
+      %a{href: l[:href]}
+        = l[:title]
 
-%u
-  - @nyt.each do |l|
-    %li
-      = l
