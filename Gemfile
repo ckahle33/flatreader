@@ -13,8 +13,10 @@ gem 'haml'
 gem 'better_errors'
 gem 'binding_of_caller'
 
-# http
-# gem 'open-uri'
+# db
+gem 'pg'
+gem 'activerecord'
+gem 'sinatra-activerecord'
 
 # parsing
 gem 'nokogiri'

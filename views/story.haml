@@ -18,11 +18,5 @@
               %a{href: "#{base_url}/lite.cnn.io"}
                 cnn
         .col-9.col-lg-9
-          - if @links
-            %ul
-            - @links.each do |l|
-              %li
-                -# - raise 'hi'
-                %a{href: l[:href]}
-                  = l[:title]
-
+          - if @story
+            = @story.to_s
