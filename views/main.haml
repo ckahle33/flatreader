@@ -1,7 +1,7 @@
 %html!
   %head
     %link{href: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css", rel: "stylesheet", integrity: "sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ", crossorigin: "anonymous"}
-    %link{href: "public/css/main.css", rel: "stylesheet"}
+    %link{href: "/main.css", rel: "stylesheet"}
 
   %body
     %header.navbar.bg-success{style: "margin-bottom: 1em;"}
@@ -19,7 +19,7 @@
               %a{href: "#{base_url}/lite.cnn.io"}
                 cnn
             %li
-              %a{href: "#{base_url}/npr.org"}
+              %a{href: "#{base_url}/thin.npr.org"}
                 npr
             %li
               %a{href: "#{base_url}/foxnews.com"}
@@ -27,6 +27,21 @@
             %li
               %a{href: "#{base_url}/drudgereport.com"}
                 drudge
+            %li
+              %a{href: "#{base_url}/theguardian.com"}
+                guardian
+            %li
+              %a{href: "#{base_url}/wsj.com"}
+                wsj
+            %li
+              %a{href: "#{base_url}/washingtonpost.com"}
+                washington post
+            %li
+              %a{href: "#{base_url}/bbc.com"}
+                bbc
+            %li
+              %a{href: "#{base_url}/apnews.com"}
+                apnews
         .col-9.col-lg-9
           = yield
 
