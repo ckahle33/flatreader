@@ -4,6 +4,8 @@
 %ul
 - @headlines.each do |h|
   %li
-    %a{href: h['url'], target: "_blank"}
-      = h['title'].downcase
+    = Date.parse(h['publishedAt']).strftime('%m/%d/%Y | %l%p') if h['publishedAt']
+    |
+    %a{href: "#{base_url}/#{h['url']}"}
+      = h['title']
 

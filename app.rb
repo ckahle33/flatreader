@@ -29,3 +29,18 @@ get '/:site' do
 
   haml :site, layout: :main
 end
+
+get '/:url/*' do
+  @sources = NewsApi.new.sources['sources']
+  uri = "#{params[:url]}//#{params['splat'][0]}"
+
+  @article = TextApi.new.summarize(uri)
+
+  haml :article, layout: :main
+end
+
+helpers do
+  def base_url
+    @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
+  end
+end
