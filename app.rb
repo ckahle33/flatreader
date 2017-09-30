@@ -1,10 +1,7 @@
 require "sinatra"
 require "sinatra/reloader" if development?
 require "better_errors"
-require "nokogiri"
-require "net/http"
 require 'dotenv/load'
-require "open-uri"
 require "pry"
 
 require './api/news'
