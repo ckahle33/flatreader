@@ -13,6 +13,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (8.0.0)
+    aylien_text_api (0.7.0)
     backports (3.8.0)
     better_errors (2.3.0)
       coderay (>= 1.0.0)
@@ -25,6 +26,7 @@ GEM
     debug_inspector (0.0.3)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.2.1)
     erubi (1.6.1)
     haml (5.0.3)
       temple (>= 0.8.0)
@@ -51,6 +53,7 @@ GEM
     mustermann (1.0.1)
     net-http-digest_auth (1.4.1)
     net-http-persistent (2.9.4)
+    netrc (0.11.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
     ntlm-http (0.1.1)
@@ -62,6 +65,10 @@ GEM
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
+    rest-client (2.0.2)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     sinatra (2.0.0)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -92,14 +99,17 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  aylien_text_api
   better_errors
   binding_of_caller
+  dotenv
   haml
   mechanize
   nokogiri
   pg
   pry
   puma
+  rest-client
   sinatra
   sinatra-activerecord
   sinatra-contrib

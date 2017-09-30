@@ -18,9 +18,16 @@ gem 'pg'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 
+# http
+gem 'rest-client'
+gem 'aylien_text_api'
+
 # parsing
 gem 'nokogiri'
 gem 'mechanize'
 
-#debug
+# debug
 gem 'pry'
+
+# misc
+gem 'dotenv'

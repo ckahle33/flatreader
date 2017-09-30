@@ -1,8 +1,9 @@
-- if @links
-  %ul
-  - @links.each do |l|
-    %li
-      -# - raise 'hi'
-      %a{href: l[:href]}
-        = l[:title]
+%h3
+  = @title
+
+%ul
+- @headlines.each do |h|
+  %li
+    %a{href: h['url'], target: "_blank"}
+      = h['title'].downcase
 

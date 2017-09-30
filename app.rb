@@ -3,8 +3,14 @@ require "sinatra/reloader" if development?
 require "better_errors"
 require "nokogiri"
 require "net/http"
+require 'dotenv/load'
 require "open-uri"
 require "pry"
+
+require './api/news'
+require './api/text'
+
+set :root, File.dirname(__FILE__)
 
 configure :development do
   use BetterErrors::Middleware
@@ -14,71 +20,15 @@ end
 set :views, "views"
 
 get '/' do
-  @links = []
+  @sources = NewsApi.new.sources['sources']
+
   haml :index, layout: :main
 end
 
 get '/:site' do
-  @links = []
-  @url = "http://#{params[:site]}"
-  doc ||= Nokogiri::HTML(open(@url))
-
-  doc.css("#{link_selector(params[:site])} a").to_a.take(30).each do |link|
-    # raise 'hi'
-    if link.attribute('href').content && link.attribute('href').value
-      @links << build_link(link)
-    end
-  end
+  @sources = NewsApi.new.sources['sources']
+  @title = @sources.select{|h| h['id'] == params['site']}[0]['name'].downcase
+  @headlines = NewsApi.new.articles(params[:site])['articles']
 
   haml :site, layout: :main
 end
-
-get '/:story/*' do
-  uri = "#{params[:story]}//#{params['splat'][0]}"
-  story ||= Nokogiri::HTML(open(uri))
-
-  @story = story.css('main p, div p')
-
-  haml :story, layout: :main
-end
-
-def link_selector(site)
-  #should live in db
-  case site
-    when /nytimes/
-      'main .story-heading'
-    when /cnn/
-      'main ul li'
-    when /npr/
-      'ul'
-    when /fox/
-      '.main-primary .title'
-    when /guardian/
-      '.fc-item__container'
-    when /wsj/
-      '.wsj-headline'
-    when /washingtonpost/
-      '#main-content .headline'
-    when /drudge/
-      'table'
-    when /bbc/
-      '.media__title'
-    when /apnews/
-      '.verticalExpandedContent'
-    end
-end
-
-def build_link(link)
-  if link.attribute('href').value =~ /http/
-    {href: "#{base_url}/#{link.attribute('href').value}", title: link.content}
-  else
-    {href: "#{base_url}/#{@url}#{link.attribute('href').value}", title: link.content}
-  end
-end
-
-helpers do
-  def base_url
-    @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
-  end
-end
-

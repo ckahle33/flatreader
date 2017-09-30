@@ -4,44 +4,19 @@
     %link{href: "/main.css", rel: "stylesheet"}
 
   %body
-    %header.navbar.bg-success{style: "margin-bottom: 1em;"}
-      %a.navbar-brand.text-white{href: "#"}
+    %header.navbar
+      %a.navbar-brand{href: "#"}
         flatreader
 
     .container-fluid
       .row
         .col-3.col-lg-3
           %ul
-            %li
-              %a{href: "#{base_url}/nytimes.com"}
-                new york times
-            %li
-              %a{href: "#{base_url}/lite.cnn.io"}
-                cnn
-            %li
-              %a{href: "#{base_url}/thin.npr.org"}
-                npr
-            %li
-              %a{href: "#{base_url}/foxnews.com"}
-                fox
-            %li
-              %a{href: "#{base_url}/drudgereport.com"}
-                drudge
-            %li
-              %a{href: "#{base_url}/theguardian.com"}
-                guardian
-            %li
-              %a{href: "#{base_url}/wsj.com"}
-                wsj
-            %li
-              %a{href: "#{base_url}/washingtonpost.com"}
-                washington post
-            %li
-              %a{href: "#{base_url}/bbc.com"}
-                bbc
-            %li
-              %a{href: "#{base_url}/apnews.com"}
-                apnews
+            - @sources.each do |s|
+              %li
+                %a{href: s['id']}
+                  = s['name'].downcase
+
         .col-9.col-lg-9
           = yield
 
