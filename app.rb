@@ -1,5 +1,6 @@
 require "sinatra"
 require "sinatra/reloader" if development?
+require "sinatra/activerecord"
 require "better_errors"
 require 'dotenv/load'
 require "pry"
