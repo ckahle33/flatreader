@@ -1,0 +1,11 @@
+%h3
+  = @title
+
+%ul
+- @articles.each do |a|
+  %li
+    = a.published_at.strftime('%m/%d/%Y | %l%p') if a.published_at
+    |
+    %a{href: "#{base_url}/#{a.source_name}/#{a.slug}"}
+      = a.title
+

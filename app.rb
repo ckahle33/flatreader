@@ -21,24 +21,22 @@ end
 set :views, "views"
 
 get '/' do
-  @sources = NewsApi.new.sources['sources']
+  @sources = Source.all
 
   haml :index, layout: :main
 end
 
-get '/:site' do
-  @sources = NewsApi.new.sources['sources']
-  @title = @sources.select{|h| h['id'] == params['site']}[0]['name'].downcase
-  @headlines = NewsApi.new.articles(params[:site])['articles']
+get '/:source' do
+  @sources = Source.all
+  @title = Source.where(slug: params['source']).first.name
+  @articles = Article.where(source_name: params['source'])
 
-  haml :site, layout: :main
+  haml :source, layout: :main
 end
 
-get '/:url/*' do
-  @sources = NewsApi.new.sources['sources']
-  uri = "#{params[:url]}//#{params['splat'][0]}"
-
-  @article = TextApi.new.summarize(uri)
+get '/:source/:article' do
+  @sources = Source.all
+  @article = Article.where(slug: params['article']).first
 
   haml :article, layout: :main
 end

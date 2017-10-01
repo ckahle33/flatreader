@@ -1,1 +1,24 @@
-= @article.to_s
+%h3
+  = @article.title
+
+%p
+  %b
+    original article:
+  %a{href: @article.url}
+    = @article.title
+
+%p
+  %b
+    published at:
+  = @article.published_at
+
+%p
+  %b
+    author:
+  = @article.author
+
+%p
+  %b
+    summary:
+%p
+  = @article.body.to_s

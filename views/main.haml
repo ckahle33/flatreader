@@ -14,8 +14,8 @@
           %ul
             - @sources.each do |s|
               %li
-                %a{href: "#{base_url}/#{s['id']}"}
-                  = s['name'].downcase
+                %a{href: "#{base_url}/#{s.slug}"}
+                  = s.name.downcase
 
         .col-9.col-lg-9
           = yield
