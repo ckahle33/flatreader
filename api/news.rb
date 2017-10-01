@@ -13,7 +13,8 @@ class NewsApi
   end
 
   def articles(source)
-    puts "URL ======= #{@articles_url}?source=#{source}&sortBy=top&apiKey=#{@key}"
+    puts "URL ======= #{@articles_url}?source=#{source}&apiKey=#{@key}"
+
 
     articles = RestClient.get "#{@articles_url}?source=#{source}&apiKey=#{@key}"
     JSON.parse(articles)

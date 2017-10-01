@@ -5,6 +5,9 @@ require "better_errors"
 require 'dotenv/load'
 require "pry"
 
+require "./models/source"
+require "./models/article"
+
 require './api/news'
 require './api/text'
 
