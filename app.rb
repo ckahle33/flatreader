@@ -11,6 +11,8 @@ require "./models/article"
 require './api/news'
 require './api/text'
 
+require './lib/workers/text'
+
 set :root, File.dirname(__FILE__)
 
 configure :development do
@@ -34,12 +36,14 @@ get '/:source' do
   haml :source, layout: :main
 end
 
-get '/:source/:article' do
+get '/:source/:id' do
   @sources = Source.all
-  @article = Article.where(slug: params['article']).first
+  @article = Article.find(params['id'])
+  @body = @article.body.split("\\").flatten if @article.body
 
   haml :article, layout: :main
 end
+
 
 helpers do
   def base_url

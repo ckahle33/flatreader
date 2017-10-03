@@ -23,6 +23,7 @@ GEM
       debug_inspector (>= 0.0.1)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     debug_inspector (0.0.3)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
@@ -66,10 +67,16 @@ GEM
     rack-protection (2.0.0)
       rack
     rake (12.0.0)
+    redis (4.0.1)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    sidekiq (5.0.5)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.4, < 5)
     sinatra (2.0.0)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -112,6 +119,7 @@ DEPENDENCIES
   puma
   rake
   rest-client
+  sidekiq
   sinatra
   sinatra-activerecord
   sinatra-contrib

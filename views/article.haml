@@ -20,5 +20,8 @@
 %p
   %b
     summary:
-%p
-  = @article.body.to_s
+
+- if @body
+  - @body.each do |p|
+    %p
+      = p.gsub("[", " ").gsub("]", " ")

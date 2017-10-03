@@ -7,6 +7,6 @@ class TextApi
   end
 
   def summarize(url)
-    @textapi.summarize(url: url, sentences: 5)
+    @textapi.summarize(url: url, sentences: 1, language: 'english')
   end
 end
