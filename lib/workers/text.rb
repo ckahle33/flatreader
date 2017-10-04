@@ -1,6 +1,6 @@
 require 'sidekiq'
 
-class TextWorker
+class ArticleWorker
   include Sidekiq::Worker
 
   def perform(id)

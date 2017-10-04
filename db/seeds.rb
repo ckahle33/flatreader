@@ -26,7 +26,6 @@ Source.all.each do |s|
       )
       article.save!
 
-      TextWorker.perform_async(article.id)
     rescue TypeError => e
       puts "ERROR: #{e}, ARTICLE: #{a}"
     rescue NoMethodError => e

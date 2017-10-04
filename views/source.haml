@@ -2,10 +2,13 @@
   = @title
 
 %ul
-- @articles.each do |a|
+- @articles.order(:published_at).each do |a|
   %li
-    = a.published_at.strftime('%m/%d/%Y | %l%p') if a.published_at
-    |
-    %a{href: "#{base_url}/#{a.source_name}/#{a.id}"}
+    %a{href: a['url'], target: "_blank"}
       = a.title
+    %div
+      %small
+        = a.published_at.strftime('%m/%d/%Y') if a.published_at
+        |
+        = a.author
 
