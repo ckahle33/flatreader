@@ -13,7 +13,6 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (8.0.0)
-    aylien_text_api (0.7.0)
     backports (3.8.0)
     better_errors (2.3.0)
       coderay (>= 1.0.0)
@@ -107,7 +106,6 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
-  aylien_text_api
   better_errors
   binding_of_caller
   dotenv
