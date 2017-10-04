@@ -3,8 +3,7 @@ require 'sidekiq'
 class ArticleWorker
   include Sidekiq::Worker
 
-  def perform(id)
-    a = Article.find(id)
-    a.update!(body:  TextApi.new.summarize(a['url'])[:sentences])
+  def perform
+    # queue article creation eventually
   end
 end

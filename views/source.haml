@@ -2,7 +2,7 @@
   = @title
 
 %ul
-- @articles.order(:published_at).each do |a|
+- @articles.each do |a|
   %li
     %a{href: a['url'], target: "_blank"}
       = a.title

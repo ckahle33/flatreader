@@ -22,7 +22,6 @@ gem 'sinatra-activerecord'
 
 # http
 gem 'rest-client'
-gem 'aylien_text_api'
 
 # parsing
 gem 'nokogiri'

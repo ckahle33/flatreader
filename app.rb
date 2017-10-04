@@ -5,12 +5,9 @@ require "better_errors"
 require 'dotenv/load'
 require "pry"
 
+require './api/news'
 require "./models/source"
 require "./models/article"
-
-require './api/news'
-require './api/text'
-
 require './lib/workers/text'
 
 set :root, File.dirname(__FILE__)
@@ -31,7 +28,7 @@ end
 get '/:source' do
   @sources = Source.all
   @title = Source.where(slug: params['source']).first.name
-  @articles = Article.where(source_name: params['source'])
+  @articles = Article.where(source_name: params['source']).order(published_at: :desc).limit(20)
 
   haml :source, layout: :main
 end

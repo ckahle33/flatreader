@@ -2,10 +2,6 @@ def date(d)
   Date.parse(d) || Time.now
 end
 
-def body(url)
-  TextApi.new.summarize(url)['sentences']
-end
-
 SOURCE_LIST.each do |s|
   source = Source.find_or_initialize_by(name: s.gsub("-", " "), slug: s)
   source.save!
