@@ -28,8 +28,8 @@ end
 
 get '/:source' do
   @sources = Source.all
-  @title = Source.where(id: params['source']).first.name
-  @articles = Article.where(source_id: params['source']).order(published_at: :desc).limit(20)
+  @source = Source.find(params['source'].to_i) if params['source']
+  @articles = Article.where(source_id: params['source']).order(published_at: :desc).limit(30)
 
   haml :source, layout: :main
 end
@@ -42,10 +42,10 @@ get '/:source/:id' do
 end
 
 post '/create' do
-  url = params[:url]
-  name = URI.parse(url).host
+  url = URI.parse(params[:url])
+  feed = get_feed(url)
   begin
-    if Source.find_or_create_by!(name: url, url: url, slug: url)
+    if Source.find_or_create_by!(url: url, name: feed.channel.title.to_s)
       @flash = {message: "saved!", class: "success"}
       redirect "/"
     end
@@ -54,6 +54,12 @@ post '/create' do
       redirect "/"
   end
 
+end
+
+def get_feed(url)
+  open(url, "User-Agent" => "ruby/#{RUBY_VERSION}") do |rss|
+    feed = RSS::Parser.parse(rss)
+  end
 end
 
 helpers do
