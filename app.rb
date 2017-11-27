@@ -28,8 +28,8 @@ end
 
 get '/:source' do
   @sources = Source.all
-  @title = Source.where(slug: params['source']).first.name
-  @articles = Article.where(source_name: params['source']).order(published_at: :desc).limit(20)
+  @title = Source.where(id: params['source']).first.name
+  @articles = Article.where(source_id: params['source']).order(published_at: :desc).limit(20)
 
   haml :source, layout: :main
 end
@@ -37,7 +37,6 @@ end
 get '/:source/:id' do
   @sources = Source.all
   @article = Article.find(params['id'])
-  @body = @article.body.split("\\").flatten if @article.body
 
   haml :article, layout: :main
 end
