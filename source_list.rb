@@ -1,32 +1,5 @@
 SOURCE_LIST = %w(
-  associated-press
-  business-insider
-  bbc-news
-  bloomberg
-  breitbart-news
-  cnn
-  cnbc
-  espn
-  daily-mail
-  financial-times
-  fortune
-  hacker-news
-  independent
-  mashable
-  national-geographic
-  newsweek
-  new-york-magazine
-  polygon
-  recode
-  reddit-r-all
-  reuters
-  techcrunch
-  the-economist
-  the-guardian-uk
-  the-new-york-times
-  the-next-web
-  the-verge
-  the-wall-street-journal
-  the-washington-post
+  http://rss.cnn.com/rss/cnn_topstories.rss
+  https://www.npr.org/rss/rss.php?id=1001
 )
 

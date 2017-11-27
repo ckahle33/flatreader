@@ -4,11 +4,9 @@
 %ul
 - @articles.each do |a|
   %li
-    %a{href: a['url'], target: "_blank"}
+    %a{href: "#{a.source_name}/#{a.id}"}
       = a.title
     %div
       %small
         = a.published_at.strftime('%m/%d/%Y') if a.published_at
-        |
-        = a.author
 

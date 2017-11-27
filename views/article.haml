@@ -1,9 +1,4 @@
 %h3
-  = @article.title
-
-%p
-  %b
-    original article:
   %a{href: @article.url}
     = @article.title
 
@@ -11,11 +6,6 @@
   %b
     published at:
   = @article.published_at
-
-%p
-  %b
-    author:
-  = @article.author
 
 %p
   %b

@@ -1,6 +1,7 @@
 require "sinatra"
 require "sinatra/reloader" if development?
 require "sinatra/activerecord"
+require "sinatra/content_for"
 require "better_errors"
 require 'dotenv/load'
 require "pry"
@@ -41,6 +42,20 @@ get '/:source/:id' do
   haml :article, layout: :main
 end
 
+post '/create' do
+  url = params[:url]
+  name = URI.parse(url).host
+  begin
+    if Source.find_or_create_by!(name: url, url: url, slug: url)
+      @flash = {message: "saved!", class: "success"}
+      redirect "/"
+    end
+  rescue
+      @flash = {message: "couldn't save dude", class: "danger"}
+      redirect "/"
+  end
+
+end
 
 helpers do
   def base_url
