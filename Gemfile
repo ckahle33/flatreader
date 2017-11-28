@@ -10,6 +10,7 @@ gem 'puma'
 
 # view
 gem 'haml'
+gem 'sinatra-flash'
 
 # errors
 gem 'better_errors'

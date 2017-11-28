@@ -2,6 +2,7 @@ require "sinatra"
 require "sinatra/reloader" if development?
 require "sinatra/activerecord"
 require "sinatra/content_for"
+require "sinatra/flash"
 require "better_errors"
 require 'dotenv/load'
 require "pry"
@@ -27,11 +28,9 @@ get '/' do
 end
 
 get '/:source' do
-  @sources = Source.all
-  @source = Source.find(params['source'].to_i) if params['source']
   @articles = Article.where(source_id: params['source']).order(published_at: :desc).limit(30)
 
-  haml :source, layout: :main
+  haml :source
 end
 
 get '/:source/:id' do
@@ -43,14 +42,13 @@ end
 
 post '/create' do
   url = URI.parse(params[:url])
-  feed = get_feed(url)
   begin
-    if Source.find_or_create_by!(url: url, name: feed.channel.title.to_s)
-      @flash = {message: "saved!", class: "success"}
+    if Source.find_or_create_by!(url: url)
+      flash[:success] = "saved!"
       redirect "/"
     end
   rescue
-      @flash = {message: "couldn't save dude", class: "danger"}
+      flash[:error] = "couldn't save dude"
       redirect "/"
   end
 
