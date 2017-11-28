@@ -21,20 +21,22 @@ end
 
 set :views, "views"
 
-get '/' do
+before do
   @sources = Source.all
+end
 
+get '/' do
   haml :index, layout: :main
 end
 
 get '/:source' do
+  @source   = Source.find(params['source'].to_i)
   @articles = Article.where(source_id: params['source']).order(published_at: :desc).limit(30)
 
-  haml :source
+  haml :source, layout: :main
 end
 
 get '/:source/:id' do
-  @sources = Source.all
   @article = Article.find(params['id'])
 
   haml :article, layout: :main
@@ -43,7 +45,7 @@ end
 post '/create' do
   url = URI.parse(params[:url])
   begin
-    if Source.find_or_create_by!(url: url)
+    if Source.find_or_create_by!(url: url.to_s)
       flash[:success] = "saved!"
       redirect "/"
     end

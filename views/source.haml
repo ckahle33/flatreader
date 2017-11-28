@@ -1,5 +1,8 @@
 %h3
-  = @source.name
+  - if @source
+    = @source.name
+  - else
+    no sources to list
 
 %ul
 - @articles.each do |a|
