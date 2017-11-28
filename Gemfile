@@ -24,7 +24,8 @@ gem 'sinatra-activerecord'
 # http
 gem 'rest-client'
 
-# parsing
+# rss / parsing
+gem 'feedjira'
 gem 'nokogiri'
 gem 'mechanize'
 

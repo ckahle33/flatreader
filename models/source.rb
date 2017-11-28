@@ -1,30 +1,23 @@
-require 'rss'
 require 'open-uri'
 
 class Source < ActiveRecord::Base
-  after_create :create_articles
+  after_create :refresh_feed
 
-  def try_name(feed)
-    if feed.try(:channel).present?
-      feed.channel.title
-    else
-      feed.try(:category).label
+  def refresh_feed
+    feed = Feedjira::Feed.fetch_and_parse(self.url)
+    self.update_attributes(name: feed.title)
+    feed.entries.each do |article|
+      a = Article.find_or_create_by!({
+        source_id:    self.id,
+        title:        article.try(:title).to_s,
+      })
+      a.update_attributes({
+        url:          article.try(:url).to_s || article.try(:links).to_s,
+        body:         article.try(:content).to_s,
+        published_at: article.try(:date) || article.try(:last_modified) || article.try(:updated)
+      })
     end
   end
-
-  def create_articles
-    open(self.url, "User-Agent" => "ruby/#{RUBY_VERSION}") do |rss|
-      feed = RSS::Parser.parse(rss)
-      self.update_attributes(name: try_name(feed))
-      feed.items.each do |article|
-        Article.find_or_create_by!({
-          source_id:    self.id,
-          title:        article.try(:title).to_s,
-          url:          article.try(:link).to_s,
-          published_at: article.try(:date),
-        }) if article.try(:date).present? or article.try(:updated).present?
-      end
-    end
-  end
+  # end
 
 end

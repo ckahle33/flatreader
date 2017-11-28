@@ -1,14 +1,11 @@
 %h3
-  - if @source
-    = @source.name
-  - else
-    no sources to list
+  = @source.name
 
 %ul
 - @articles.each do |a|
   %li
     %a{href: "#{a.source_id}/#{a.id}"}
-      = html_escape(a.title)
+      = a.title
     %div
       %small
         = a.published_at.strftime('%m/%d/%Y') if a.published_at
