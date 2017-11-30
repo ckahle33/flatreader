@@ -3,9 +3,14 @@ require 'open-uri'
 class Source < ActiveRecord::Base
   after_create :refresh_feed
 
+  def favicon
+    u = URI.parse(self.url)
+    "https://www.google.com/s2/favicons?domain=#{u.host.sub(/^rss./, '')}"
+  end
+
   def refresh_feed
     feed = Feedjira::Feed.fetch_and_parse(self.url)
-    self.update_attributes(name: feed.title)
+    self.update_attributes(name: feed.title, favicon:favicon)
     feed.entries.each do |article|
       a = Article.find_or_create_by!({
         source_id:    self.id,
@@ -18,5 +23,6 @@ class Source < ActiveRecord::Base
       })
     end
   end
+
 
 end

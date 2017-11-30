@@ -1,0 +1,10 @@
+- if @sources
+  %ul
+    - @sources.each do |s|
+      %li
+        %a{href: "#{base_url}/sources/#{s.id}"}
+          %span
+            %image.favicon{src: "#{s.favicon}"}
+          = s.name.downcase
+- else
+  no sources to list

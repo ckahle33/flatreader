@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126080942) do
+ActiveRecord::Schema.define(version: 20171130022847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20171126080942) do
 
   create_table "sources", force: :cascade do |t|
     t.string "name"
-    t.string "slug"
+    t.string "favicon"
     t.string "url"
   end
 

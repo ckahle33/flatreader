@@ -2,16 +2,24 @@ li {
   list-style-type: none;
 }
 
+.favicon {
+  width: 16px;
+  height: 16px;
+}
+
 a {
   color: black;
   text-decoration: underline;
 }
 
 header {
-  margin-bottom: 1em;
   border-bottom: 1px solid black;
 }
 
 footer {
   border-top: 1px solid black;
+}
+
+.flash {
+  padding: 1em;
 }

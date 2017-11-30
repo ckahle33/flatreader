@@ -1,10 +1,15 @@
 %h3
+  %span
+    %image.favicon{src: "#{@source.favicon}"}
   = @source.name
+
+%a{href: "/refresh/#{@source.id}"}
+  refresh feed
 
 %ul
 - @articles.each do |a|
   %li
-    %a{href: "#{a.source_id}/#{a.id}"}
+    %a{href: "/sources/#{a.source_id}/articles/#{a.id}"}
       = a.title
     %div
       %small

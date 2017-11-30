@@ -9,21 +9,16 @@
       %a.navbar-brand{href: "#"}
         flatreader
 
+    .row-fluid.flash-containter
+      = styled_flash
+
     .col-12.col-lg-9.col-md-9.col-xs-12
       = haml :create_source
 
     .container-fluid
       .row
         .col-12.col-lg-3.col-md.9col-xs-12
-          - if @sources
-            %ul
-              - @sources.each do |s|
-                %li
-                  %a{href: "#{base_url}/#{s.id}"}
-                    = s.name.downcase
-          - else
-            no sources to list
-
+          = haml :sidebar
         .col-12.col-lg-9.col-md-9.col-xs-12
           = yield
 

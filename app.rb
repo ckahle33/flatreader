@@ -15,6 +15,8 @@ require './lib/workers/text'
 
 set :root, File.dirname(__FILE__)
 
+enable :sessions
+
 configure :development do
   use BetterErrors::Middleware
   BetterErrors.application_root = __dir__
@@ -30,14 +32,14 @@ get '/' do
   haml :index, layout: :main
 end
 
-get '/:source' do
-  @source   = Source.find(params['source'].to_i)
-  @articles = Article.where(source_id: params['source']).order(published_at: :desc).limit(30)
+get '/sources/:source_id' do
+  @source   = Source.find(params['source_id'].to_i)
+  @articles = Article.where(source_id: params['source_id']).order(published_at: :desc).limit(30)
 
   haml :source, layout: :main
 end
 
-get '/:source/:id' do
+get '/sources/:source_id/articles/:id' do
   @article = Article.find(params['id'])
 
   haml :article, layout: :main
@@ -47,20 +49,22 @@ post '/create' do
   url = URI.parse(params[:url])
   begin
     if Source.find_or_create_by!(url: url.to_s)
-      flash[:success] = "saved!"
+      flash['alert-success'] = "saved!"
       redirect "/"
     end
   rescue
-      flash[:error] = "couldn't save dude"
+      flash['alert-danger'] = "couldn't save dude"
       redirect "/"
   end
 
 end
 
-def get_feed(url)
-  open(url, "User-Agent" => "ruby/#{RUBY_VERSION}") do |rss|
-    feed = RSS::Parser.parse(rss)
-  end
+get '/refresh/:id' do
+  id = params[:id ]if params[:id]
+  s = Source.find(id.to_i)
+  s.refresh_feed
+  flash['alert-success'] = "Feed refreshed!"
+  redirect "/sources/#{id}"
 end
 
 helpers do
