@@ -1,3 +1,8 @@
+body {
+  font-family: sans-serif;
+  font-weight: 300;
+}
+
 li {
   list-style-type: none;
 }
@@ -8,13 +13,28 @@ li {
 }
 
 a {
-  color: black;
+  color: #292b2c;
   text-decoration: underline;
 }
 
-header {
-  border-bottom: 1px solid black;
+h3 {
+  font-weight: 700;
 }
+
+.navbar-brand {
+ font-weight: 700;
+}
+
+header {
+  border-bottom: 1px solid #292b2c;
+}
+
+.action-bar {
+  border-bottom: 1px solid #292b2c;
+  margin-bottom: 1em;
+  padding-top: .4em;
+}
+
 
 footer {
   border-top: 1px solid black;
@@ -22,4 +42,17 @@ footer {
 
 .flash {
   padding: 1em;
+}
+
+.sidebar {
+  padding-left: 0;
+}
+
+.btn, .form-control {
+  border-radius: 0;
+  border: 1px solid #292b2c;
+}
+
+.btn {
+  background: #292b2c;
 }
