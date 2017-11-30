@@ -56,3 +56,7 @@ footer {
 .btn {
   background: #292b2c;
 }
+
+.signup {
+  max-width: 500px;
+}

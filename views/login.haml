@@ -1,0 +1,15 @@
+%h3
+  login
+
+%form{method: "post", action: "/login", class: "signup"}
+  .form-group
+    %label{for: "email"}
+      email
+    %input{name: "email", type: "text", class: "form-control", id: "email"}
+  .form-group
+    %label{for: "password"}
+      password
+    %input{name: "password", type: "password", class: "form-control"}
+    %br
+    %button{type: "submit", class: "btn btn-primary"}
+      go

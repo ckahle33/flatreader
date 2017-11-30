@@ -9,9 +9,7 @@
 %ul
 - @articles.each do |a|
   %li
+    = a.published_at.strftime('%m/%d/%Y') if a.published_at
+    |
     %a{href: "/sources/#{a.source_id}/articles/#{a.id}"}
       = a.title
-    %div
-      %small
-        = a.published_at.strftime('%m/%d/%Y') if a.published_at
-

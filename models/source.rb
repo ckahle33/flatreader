@@ -2,6 +2,7 @@ require 'open-uri'
 
 class Source < ActiveRecord::Base
   after_create :refresh_feed
+  has_many :articles
 
   def favicon
     u = URI.parse(self.url)

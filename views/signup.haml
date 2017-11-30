@@ -1,0 +1,19 @@
+%h3
+  create account
+
+%form{method: "post", action: "/users", class: "signup"}
+  .form-group
+    %label{for: "email"}
+      email
+    %input{name: "email", type: "text", class: "form-control", id: "email"}
+  .form-group
+    %label{for: "password"}
+      password
+    %input{name: "password", type: "password", class: "form-control"}
+  .form-group
+    %label{for: "password_confirmation"}
+      password confirmation
+    %input{name: "password_confirmation", type: "password", class: "form-control"}
+    %br
+    %button{type: "submit", class: "btn btn-primary"}
+      go

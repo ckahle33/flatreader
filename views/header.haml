@@ -1,0 +1,18 @@
+%a.navbar-brand{href: "/"}
+  flatreader
+
+%ul.navbar-nav.flex-row.ml-md-auto
+  - if current_user
+    %li.nav-item.mr-1
+      %a.btn.btn-primary{href: '/settings'}
+        = @current_user.email
+    %li.nav-item.mr-1
+      %a.btn.btn-primary{href: '/logout'}
+        logout
+  - else
+    %li.nav-item.mr-1
+      %a.btn.btn-primary{href: '/signup'}
+        signup
+    %li.nav-item
+      %a.btn.btn-primary{href: '/login'}
+        login

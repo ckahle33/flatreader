@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'rake'
 gem 'sidekiq'
+gem 'bcrypt'
 
 # server
 gem 'puma'
