@@ -8,13 +8,19 @@
     %header.navbar.navbar-expand.flex-md-row.bd-navbar
       = haml :header
 
-    .row-fluid.flash-containter
-      = styled_flash
+    .container-fluid.px-0
+      .row-fluid.flash-containter
+        = styled_flash
 
-    - if current_user
-      = haml :dashboard
-    - else
-      = haml :about
+      - if current_user
+        .row-fluid.action-bar
+          = haml :create_source
+
+      .row.p-3
+        - if current_user
+          .col.col-lg-3
+            = haml :sidebar
+        = yield
 
     %footer.navbar
       %ul.nav

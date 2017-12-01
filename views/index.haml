@@ -1,11 +1,15 @@
-- @sources.each do |s|
-  %h3
-    %span
-      %image.favicon{src: "#{s.favicon}"}
-    = s.name
-  - s.articles.each do |a|
-    %li
-      = a.published_at.strftime('%m/%d/%Y') if a.published_at
-      |
-      %a{href: "/sources/#{a.source_id}/articles/#{a.id}"}
-        = a.title
+- if current_user
+  .col.col-lg-9
+    - @sources.each do |s|
+      %h3
+        %span
+          %image.favicon{src: "#{s.favicon}"}
+        = s.name
+      - s.articles.each do |a|
+        %li
+          = a.published_at.strftime('%m/%d/%Y') if a.published_at
+          |
+          %a{href: "/sources/#{a.source_id}/articles/#{a.id}"}
+            = a.title
+- else
+  = haml :about
