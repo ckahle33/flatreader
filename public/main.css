@@ -35,7 +35,6 @@ header {
   padding-top: .4em;
 }
 
-
 footer {
   border-top: 1px solid black;
 }
@@ -45,7 +44,7 @@ footer {
 }
 
 .sidebar {
-  padding-left: 0;
+  padding-left: 1em;
 }
 
 .btn, .form-control {

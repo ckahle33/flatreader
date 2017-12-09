@@ -71,7 +71,7 @@ end
 # move these to separate file
 
 get '/signup' do
-  haml :signup
+  haml :signup, layout: :main
 end
 
 post '/users' do
@@ -87,7 +87,7 @@ post '/users' do
 end
 
 get '/login' do
-  haml :login
+  haml :login, layout: :main
 end
 
 post '/login' do
