@@ -149,8 +149,8 @@ DEPENDENCIES
   bcrypt
   better_errors
   binding_of_caller
-  capistrano (~> 3.2)
-  capistrano-bundler
+  capistrano (~> 3.6)
+  capistrano-bundler (~> 1.3)
   capistrano-chruby
   capistrano-passenger
   dotenv

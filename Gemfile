@@ -7,8 +7,8 @@ gem 'sidekiq'
 gem 'bcrypt'
 
 # deploy
-gem 'capistrano', '~> 3.2'
-gem 'capistrano-bundler'
+gem 'capistrano', '~> 3.6'
+gem 'capistrano-bundler', '~> 1.3'
 gem 'capistrano-passenger'
 gem 'capistrano-chruby'
 
