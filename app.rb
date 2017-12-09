@@ -4,7 +4,6 @@ require "sinatra/activerecord"
 require "sinatra/content_for"
 require "sinatra/flash"
 require "better_errors"
-require 'dotenv/load'
 require 'feedjira'
 require "pry"
 

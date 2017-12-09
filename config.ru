@@ -1,6 +1,8 @@
 require 'bundler/setup'
 require 'sidekiq'
 require 'sidekiq/web'
+require 'dotenv'
+Dotenv.load
 
 require './app'
 
