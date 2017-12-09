@@ -10,7 +10,7 @@ set :deploy_to, "/home/ubuntu/flatreader"
 set :chruby_ruby, 'ruby-2.4.0'
 set :passenger_restart_with_touch, true
 
-set :linked_files, ["config/database.yml", ".env"]
+set :linked_files, %w{.env config/database.yml}
 
 set :ssh_options, {
   forward_agent: "true" ,

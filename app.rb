@@ -12,6 +12,8 @@ require "./models/source"
 require "./models/article"
 require "./models/user"
 require './lib/workers/text'
+require 'dotenv'
+Dotenv.load
 
 set :root, File.dirname(__FILE__)
 
