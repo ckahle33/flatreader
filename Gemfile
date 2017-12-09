@@ -6,6 +6,12 @@ gem 'rake'
 gem 'sidekiq'
 gem 'bcrypt'
 
+# deploy
+gem 'capistrano', '~> 3.2'
+gem 'capistrano-bundler'
+gem 'capistrano-passenger'
+gem 'capistrano-chruby'
+
 # server
 gem 'puma'
 

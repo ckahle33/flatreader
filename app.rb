@@ -16,6 +16,8 @@ require './lib/workers/text'
 
 set :root, File.dirname(__FILE__)
 
+set :environment, ENV['RACK_ENV']
+
 enable :sessions
 
 configure :development do
