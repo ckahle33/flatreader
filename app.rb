@@ -1,3 +1,4 @@
+require "rubygems"
 require "sinatra"
 require "sinatra/reloader" if development?
 require "sinatra/activerecord"
@@ -7,13 +8,14 @@ require "better_errors"
 require 'feedjira'
 require "pry"
 
+require 'dotenv'
+Dotenv.load
+
 require './api/news'
 require "./models/source"
 require "./models/article"
 require "./models/user"
 require './lib/workers/text'
-require 'dotenv'
-Dotenv.load
 
 set :root, File.dirname(__FILE__)
 

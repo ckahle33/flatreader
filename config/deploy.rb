@@ -3,7 +3,7 @@ lock "~> 3.10.0"
 
 set :application, "flatreader"
 set :repo_url, "git@github.com:ckahle33/flatreader.git"
-set :user, "ckahle33"
+set :user, "ubuntu"
 
 set :deploy_to, "/home/ubuntu/flatreader"
 

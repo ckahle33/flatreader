@@ -2,11 +2,10 @@
 require "capistrano/setup"
 require "capistrano/deploy"
 require "capistrano/scm/git"
+require "capistrano/chruby"
+require "capistrano/passenger"
 
 install_plugin Capistrano::SCM::Git
 
-require "capistrano/chruby"
-require "capistrano/bundler"
-require "capistrano/passenger"
 
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
