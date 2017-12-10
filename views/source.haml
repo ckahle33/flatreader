@@ -1,15 +1,16 @@
-%h3
-  %span
-    %image.favicon{src: "#{@source.favicon}"}
-  = @source.name
+.col.col-9
+  %h3
+    %span
+      %image.favicon{src: "#{@source.favicon}"}
+    = @source.name
 
-%a{href: "/refresh/#{@source.id}"}
-  refresh feed
+  %a{href: "/refresh/#{@source.id}"}
+    refresh feed
 
-%ul
-- @articles.each do |a|
-  %li
-    = a.published_at.strftime('%m/%d/%Y') if a.published_at
-    |
-    %a{href: "/sources/#{a.source_id}/articles/#{a.id}"}
-      = a.title
+    %ul
+    - @articles.each do |a|
+      %li
+        = a.published_at.strftime('%m/%d/%Y') if a.published_at
+        |
+        %a{href: "/sources/#{a.source_id}/articles/#{a.id}"}
+          = a.title
