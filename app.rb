@@ -11,7 +11,6 @@ require "pry"
 require 'dotenv'
 Dotenv.load
 
-require './api/news'
 require "./models/source"
 require "./models/article"
 require "./models/user"
