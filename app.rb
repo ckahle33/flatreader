@@ -23,6 +23,7 @@ set :environment, ENV['RACK_ENV']
 enable :sessions
 
 configure :development do
+  enable :reloader
   use BetterErrors::Middleware
   BetterErrors.application_root = __dir__
 end

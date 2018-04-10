@@ -12,5 +12,6 @@
       %li
         = a.published_at.strftime('%m/%d/%Y') if a.published_at
         |
-        %a{href: "/sources/#{a.source_id}/articles/#{a.id}"}
+        %a{href: "#","data-title": "#{a.title}", "data-body": "#{a.body}", "data-target" => "#exampleModalLong", "data-toggle" => "modal"}
+
           = a.title
