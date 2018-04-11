@@ -13,7 +13,8 @@ gem 'capistrano-passenger'
 gem 'capistrano-chruby'
 
 # server
-gem 'puma'
+# gem 'puma'
+gem 'passenger'
 
 # view
 gem 'haml'

@@ -22,6 +22,8 @@ class Source < ActiveRecord::Base
         body:         article.try(:content).to_s,
         published_at: article.try(:date) || article.try(:last_modified) || article.try(:updated)
       })
+    rescue
+      next
     end
   end
 

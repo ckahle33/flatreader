@@ -91,11 +91,13 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     ntlm-http (0.1.1)
+    passenger (5.2.3)
+      rack
+      rake (>= 0.8.1)
     pg (1.0.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (3.11.3)
     rack (2.0.4)
     rack-protection (2.0.1)
       rack
@@ -158,9 +160,9 @@ DEPENDENCIES
   haml
   mechanize
   nokogiri
+  passenger
   pg
   pry
-  puma
   rake
   rest-client
   sidekiq
@@ -170,4 +172,4 @@ DEPENDENCIES
   sinatra-flash
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

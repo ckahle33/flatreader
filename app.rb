@@ -3,6 +3,7 @@ require "sinatra"
 require "sinatra/reloader" if development?
 require "sinatra/activerecord"
 require "sinatra/content_for"
+require 'logger'
 require "sinatra/flash"
 require "better_errors"
 require 'feedjira'
@@ -17,20 +18,20 @@ require "./models/user"
 require './lib/workers/text'
 
 set :root, File.dirname(__FILE__)
-
 set :environment, ENV['RACK_ENV']
+set :views, "views"
 
 enable :sessions
 
 configure :development do
-  enable :reloader
+  logger = Logger.new(File.open("./log/#{ENV['RACK_ENV']}.log"), "a+")
+  set :logger, logger
   use BetterErrors::Middleware
   BetterErrors.application_root = __dir__
 end
 
-set :views, "views"
-
 before do
+  env["rack.errors"] = logger
   @sources = Source.all
 end
 
