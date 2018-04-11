@@ -5,11 +5,14 @@
         %span
           %image.favicon{src: "#{s.favicon}"}
         = s.name
+      %a{href: "/refresh/#{s.id}"}
+        refresh feed
+
       - s.articles.each do |a|
         %li
           = a.published_at.strftime('%m/%d/%Y') if a.published_at
           |
-          %a{href: "#","data-title": "#{a.title}", "data-body": "#{a.body}", "data-target" => "#exampleModalLong", "data-toggle" => "modal"}
+          %a{href: "#","data-title": a.title, "data-body": a.body, "data-url" => a.url, "data-target" => "#exampleModalLong", "data-toggle" => "modal"}
             = a.title
 
 - else

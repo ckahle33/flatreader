@@ -22,10 +22,12 @@ set :environment, ENV['RACK_ENV']
 set :views, "views"
 
 enable :sessions
+set :sessions, :expire_after => 2419200
 
 configure :development do
   logger = Logger.new(File.open("./log/#{ENV['RACK_ENV']}.log"), "a+")
   set :logger, logger
+  enable :reloader
   use BetterErrors::Middleware
   BetterErrors.application_root = __dir__
 end
@@ -46,10 +48,10 @@ get '/sources/:source_id' do
   haml :source, layout: :main
 end
 
-get '/sources/:source_id/articles/:id' do
-  @article = Article.find(params['id'])
-  haml :article, layout: :main
-end
+# get '/sources/:source_id/articles/:id' do
+#   @article = Article.find(params['id'])
+#   haml :article, layout: :main
+# end
 
 post '/create' do
   url = URI.parse(params[:url])
