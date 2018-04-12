@@ -18,8 +18,8 @@ class Source < ActiveRecord::Base
         title:        article.try(:title).to_s,
       })
       a.update_attributes({
-        url:          article.try(:url).to_s || article.try(:links).to_s,
-        body:         article.try(:content).to_s,
+        url:          article.try(:url) || article.try(:links),
+        body:         article.try(:content) || article.try(:summary),
         published_at: article.try(:date) || article.try(:last_modified) || article.try(:updated)
       })
     rescue
