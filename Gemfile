@@ -5,6 +5,8 @@ gem 'sinatra-contrib'
 gem 'rake'
 gem 'sidekiq'
 gem 'bcrypt'
+gem 'sass'
+gem 'will_paginate'
 
 # deploy
 gem 'capistrano', '~> 3.6'

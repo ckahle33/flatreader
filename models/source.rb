@@ -13,9 +13,9 @@ class Source < ActiveRecord::Base
     feed = Feedjira::Feed.fetch_and_parse(self.url)
     self.update_attributes(name: feed.title, favicon:favicon)
     feed.entries.each do |article|
-      a = Article.find_or_create_by!({
+      a = Article.find_or_initialize_by({
         source_id:    self.id,
-        title:        article.try(:title).to_s,
+        title:        article.try(:title)
       })
       a.update_attributes({
         url:          article.try(:url) || article.try(:links),

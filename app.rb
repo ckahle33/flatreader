@@ -1,6 +1,6 @@
 require "rubygems"
 require "sinatra"
-require "sinatra/reloader" if development?
+require "sinatra/reloader"
 require "sinatra/activerecord"
 require "sinatra/content_for"
 require 'logger'
@@ -31,6 +31,8 @@ configure :development do
   enable :reloader
   use BetterErrors::Middleware
   BetterErrors.application_root = __dir__
+
+  set :haml, format: :html5
 end
 
 before do
@@ -39,6 +41,12 @@ before do
 end
 
 get '/' do
+  @articles = Article.all.where.not(published_at: nil).order('published_at DESC').limit(100)
+  haml :index, layout: :main
+end
+
+get '/all' do
+  @articles = Article.all.where.not(published_at: nil).order('published_at DESC').limit(100)
   haml :index, layout: :main
 end
 
@@ -48,11 +56,6 @@ get '/sources/:source_id' do
 
   haml :source, layout: :main
 end
-
-# get '/sources/:source_id/articles/:id' do
-#   @article = Article.find(params['id'])
-#   haml :article, layout: :main
-# end
 
 post '/create' do
   url = URI.parse(params[:url])
@@ -68,11 +71,11 @@ post '/create' do
 end
 
 get '/refresh/:id' do
-  id = params[:id ]if params[:id]
+  id = params[:id] if params[:id]
   s = Source.find(id.to_i)
   s.refresh_feed
   flash['alert-success'] = "feed refreshed!"
-  redirect "/sources/#{id}"
+  redirect back
 end
 
 # move these to separate file

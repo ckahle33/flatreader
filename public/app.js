@@ -1,5 +1,4 @@
-$(()=> {
-  console.log("hi")
+$(function() {
   $('#exampleModalLong').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     console.log(button.data("url"))
@@ -13,4 +12,11 @@ $(()=> {
       `
     )
   })
+
+  var timeout = setTimeout(hideFlash, 2000)
+
+  function hideFlash() {
+    $('.flash').addClass('d-none');
+    clearTimeout(timeout);
+  }
 })

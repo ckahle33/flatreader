@@ -1,19 +1,19 @@
 - if current_user
-  .col.col-lg-9
-    - @sources.each do |s|
-      %h3
-        %span
-          %image.favicon{src: "#{s.favicon}"}
-        = s.name
-      %a{href: "/refresh/#{s.id}"}
-        refresh feed
+  .col.col-9
+    %h3
+      all sources
 
-      - s.articles.each do |a|
-        %li
-          = a.published_at.strftime('%m/%d/%Y') if a.published_at
-          |
-          %a{href: "#","data-title": a.title, "data-body": a.body, "data-url" => a.url, "data-target" => "#exampleModalLong", "data-toggle" => "modal"}
-            = a.title
+    %ul
+    - @articles.each do |a|
+      %li
+        %span
+          %image.favicon{src: "#{a.source.favicon}"}
+        = a.source.name
+        = a.published_at.strftime('%m/%d/%Y') if a.published_at
+        |
+        %a{href: "#","data-title": a.title, "data-body": a.body, "data-url" => a.url, "data-target" => "#exampleModalLong", "data-toggle" => "modal"}
+
+          = a.title
 
 - else
   = haml :about

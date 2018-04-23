@@ -1,0 +1,11 @@
+%ul.nav
+  %li.nav-item
+    %a.nav-link{href: "/all"}
+      all sources
+
+  %li.nav-item
+    .dropdown.hide
+      %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}add source
+
+      .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
+        = haml :create_source

@@ -1,66 +1,49 @@
 body {
   font-family: sans-serif;
-  font-weight: 300;
-}
+  font-weight: 300; }
 
 li {
-  list-style-type: none;
-}
+  list-style-type: none; }
 
 .favicon {
   width: 16px;
-  height: 16px;
-}
+  height: 16px; }
 
 a {
   color: #292b2c;
-  text-decoration: underline;
-}
+  text-decoration: underline; }
 
-h3 {
-  font-weight: 700;
-}
-
-.navbar-brand {
- font-weight: 700;
-}
+h3, .navbar-brand {
+  font-weight: 700; }
 
 header {
-  border-bottom: 1px solid #292b2c;
-}
+  border-bottom: 1px solid #292b2c; }
 
 .action-bar {
   border-bottom: 1px solid #292b2c;
   margin-bottom: 1em;
-  padding-top: .4em;
-}
+  padding-top: 0.4em; }
 
 footer {
-  border-top: 1px solid black;
-}
+  border-top: 1px solid black; }
 
 .flash {
-  padding: 1em;
-}
+  padding: 1em; }
 
 .sidebar {
-  padding-left: 1em;
-}
+  padding-left: 1em; }
 
 .btn, .form-control {
   border-radius: 0;
-  border: 1px solid #292b2c;
-}
+  border: 1px solid #292b2c; }
 
 .btn {
-  background: #292b2c;
-}
+  background: #292b2c; }
 
 .signup {
-  max-width: 500px;
-}
+  max-width: 500px; }
 
-.modal-content img{
-  max-width: 100%;
-}
+.modal-content img, iframe {
+  max-width: 100%; }
 
+/*# sourceMappingURL=main.css.map */
