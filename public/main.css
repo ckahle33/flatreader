@@ -1,6 +1,18 @@
 body {
   font-family: sans-serif;
   font-weight: 300; }
+  body.dark {
+    background: #252830; }
+    body.dark a, body.dark li, body.dark h3 {
+      color: #cfd2da; }
+    body.dark .btn {
+      background: #cfd2da;
+      color: #272727; }
+    body.dark header, body.dark .action-bar {
+      border-bottom: 1px solid #cfd2da; }
+    body.dark .favicon {
+      padding: 1px;
+      background: #cfd2da; }
 
 li {
   list-style-type: none; }
