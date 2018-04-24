@@ -15,6 +15,7 @@ Dotenv.load
 require "./models/source"
 require "./models/article"
 require "./models/user"
+require "./models/user_source"
 require './lib/workers/text'
 
 set :root, File.dirname(__FILE__)
@@ -37,17 +38,21 @@ end
 
 before do
   env["rack.errors"] = logger
-  @sources = Source.all
+  @user_sources = UserSource.where(user_id: current_user["id"]) if current_user
 end
 
 get '/' do
-  @articles = Article.all.where.not(published_at: nil).order('published_at DESC').limit(100)
+  # check current user
+  # need a join below
+  @articles = Article.where(source_id: user_source_ids).where.not(published_at: nil).order('published_at DESC').limit(100) # will paginate here
   haml :index, layout: :main
+  # create splash layout here if !current_user
 end
 
 get '/all' do
-  @articles = Article.all.where.not(published_at: nil).order('published_at DESC').limit(100)
-  haml :index, layout: :main
+  @sources = Source.all
+  # @articles = Article.all.where.not(published_at: nil).order('published_at DESC').limit(100)
+  haml :all, layout: :main
 end
 
 get '/sources/:source_id' do
@@ -57,17 +62,54 @@ get '/sources/:source_id' do
   haml :source, layout: :main
 end
 
+get '/add/:source_id' do
+  @source   = Source.find(params['source_id'].to_i)
+  if UserSource.find_or_create_by!(source_id: @source.id, user_id: current_user['id'])
+    flash['alert-success'] = "added source!"
+    redirect back
+  else
+    flash['alert-error'] = "couldn't add source..."
+    redirect back
+  end
+
+end
+
+get '/remove/:user_source_id' do
+  if UserSource.destroy(params["user_source_id"])
+    flash['alert-success'] = "removed source!"
+    redirect back
+  else
+    flash['alert-error'] = "couldn't remove source..."
+    redirect back
+  end
+
+end
+
 post '/create' do
   url = URI.parse(params[:url])
   begin
     if Source.find_or_create_by!(url: url.to_s)
       flash['alert-success'] = "saved!"
-      redirect "/"
+      redirect back
     end
   rescue
       flash['alert-danger'] = "couldn't save dude"
-      redirect "/"
+      redirect back
   end
+end
+
+post '/search' do
+  query = params["q"]
+
+  @sources = Source.where("name ILIKE ?", "%#{query}%")
+  haml :all, layout: :main
+  # redirect "/search?q=#{query}"
+end
+
+get '/search' do
+  query = params["q"]
+  @sources = Source.where("name ILIKE ?", "%#{query}%")
+  haml :all, layout: :main
 end
 
 get '/refresh/:id' do
@@ -118,6 +160,7 @@ get '/logout' do
 end
 
 get '/settings' do
+  # dark mode toggle handling here
   haml :settings, layout: :main
 end
 
@@ -128,5 +171,9 @@ helpers do
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def user_source_ids
+    current_user.sources.map(&:id) if current_user
   end
 end

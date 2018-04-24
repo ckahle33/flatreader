@@ -1,10 +1,13 @@
-- if @sources
+- if @user_sources
   %ul.sidebar
-    - @sources.each do |s|
+    - @user_sources.each do |us|
       %li
         %span
-          %image.favicon{src: "#{s.favicon}"}
-        %a{href: "#{base_url}/sources/#{s.id}"}
-          = s.name.downcase
+          %image.favicon{src: "#{us.source.favicon}"}
+        %a{href: "#{base_url}/sources/#{us.source.id}"}
+          = us.source.name.downcase
+          |
+          %a{href: "/remove/#{us.id}"}
+            remove
 - else
-  no sources to list
+  add sources to your feed

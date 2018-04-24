@@ -45,12 +45,8 @@ footer {
 .sidebar {
   padding-left: 1em; }
 
-.btn, .form-control {
-  border-radius: 0;
-  border: 1px solid #292b2c; }
-
-.btn {
-  background: #292b2c; }
+.dropdown-menu {
+  min-width: 300px; }
 
 .signup {
   max-width: 500px; }
