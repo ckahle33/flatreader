@@ -1,3 +1,3 @@
-server "34.216.49.50", user: "ubuntu", roles: %w{app db web}
+server "206.189.170.98", user: "root", roles: %w{app db web}
 set :branch, "master"
 

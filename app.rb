@@ -20,7 +20,7 @@ require './lib/workers/text'
 set :root, File.dirname(__FILE__)
 set :environment, ENV['RACK_ENV']
 set :views, "views"
-set :database, {adapter: "postgresql", database: "flatreader_development"}
+set :database, {adapter: "postgresql", database: "flatreader_#{ENV['RACK_ENV']}"}
 
 enable :sessions
 set :sessions, :expire_after => 2419200
