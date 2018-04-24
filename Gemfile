@@ -13,6 +13,7 @@ gem 'capistrano', '~> 3.6'
 gem 'capistrano-bundler', '~> 1.3'
 gem 'capistrano-passenger'
 gem 'capistrano-chruby'
+gem "capistrano-rails", "~> 1.3"
 
 # server
 # gem 'puma'
