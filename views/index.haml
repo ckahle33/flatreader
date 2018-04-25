@@ -8,7 +8,7 @@
       %li
         %span
           %image.favicon{src: "#{a.source.favicon}"}
-        = a.source.name
+        -# = a.source.name
         = a.published_at.strftime('%m/%d/%Y') if a.published_at
         |
         %a{href: "#","data-title": a.title, "data-body": a.body, "data-url" => a.url, "data-target" => "#exampleModalLong", "data-toggle" => "modal"}
