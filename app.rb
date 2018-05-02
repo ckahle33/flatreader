@@ -27,6 +27,7 @@ set :database, {adapter: "postgresql", database: "flatreader_#{ENV['RACK_ENV']}"
 configure :development do
   # sessions
   set :sessions, :expire_after => 2592000, key: 'flatreader.session'
+  set :session_secret, ENV['SESSION_SECRET']
 
   #logging
   enable :logging, :dump_errors, :raise_errors
