@@ -11,7 +11,7 @@ set :tmp_dir, "/home/flatreader/tmp"
 set :chruby_ruby, 'ruby-2.5.0'
 set :passenger_restart_with_touch, true
 
-set :linked_files, %w{.env}
+set :linked_files, %w{.env log/*}
 
 set :ssh_options, {
   forward_agent: "true",

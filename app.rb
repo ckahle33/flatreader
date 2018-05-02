@@ -111,7 +111,9 @@ post '/create' do
   authenticate!
   url = URI.parse(params[:url])
   begin
-    if Source.find_or_create_by!(url: url.to_s)
+    source = Source.find_or_create_by!(url: url.to_s)
+    if source
+      UserSource.find_or_create_by!(source_id: source.id, user_id: @current_user['id'])
       flash['alert-success'] = "saved!"
       redirect back
     end
