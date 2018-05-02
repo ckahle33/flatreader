@@ -45,15 +45,19 @@ configure :development do
 end
 
 before do
+  @current_user ||= User.find(session['user_id']) if session['user_id']
   env["rack.errors"] = logger
-  @user_sources = UserSource.where(user_id: current_user["id"]) if current_user
+  @user_sources ||= UserSource.where(user_id: @current_user["id"]) if @current_user
   # raise 'hi'
 end
 
 get '/' do
-  authenticate!
+  if @current_user
     @articles = Article.where(source_id: user_source_ids).where.not(published_at: nil).order('published_at DESC').limit(100) # will paginate here
-  haml :index, layout: :main
+    haml :index, layout: :main
+  else
+    haml :splash, layout: :main
+  end
 end
 
 get '/all' do
