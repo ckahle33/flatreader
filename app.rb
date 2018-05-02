@@ -24,7 +24,7 @@ set :views, "views"
 set :database, {adapter: "postgresql", database: "flatreader_#{ENV['RACK_ENV']}"}
 
 
-configure :development do
+configure :development, :production do
   # sessions
   set :sessions, :expire_after => 2592000, key: 'flatreader.session'
   set :session_secret, ENV['SESSION_SECRET']
@@ -40,6 +40,19 @@ configure :development do
   # errors
   use BetterErrors::Middleware
   BetterErrors.application_root = __dir__
+
+  set :haml, format: :html5
+end
+
+configure :production do
+  # sessions
+  set :sessions, :expire_after => 2592000, key: 'flatreader.session'
+  set :session_secret, ENV['SESSION_SECRET']
+
+  #logging
+  enable :logging, :dump_errors
+  logger = Logger.new(File.open("./log/#{ENV['RACK_ENV']}.log"), "a+")
+  set :logger, logger
 
   set :haml, format: :html5
 end
