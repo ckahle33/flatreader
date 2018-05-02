@@ -51,7 +51,7 @@ configure :production do
 
   #logging
   enable :logging, :dump_errors
-  logger = Logger.new(File.open("./log/#{ENV['RACK_ENV']}.log"), "a+")
+  logger = Logger.new(File.open("./log/#{ENV['RACK_ENV']}.log", "a+"))
   set :logger, logger
 
   set :haml, format: :html5
