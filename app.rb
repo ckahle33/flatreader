@@ -23,38 +23,32 @@ set :environment, ENV['RACK_ENV']
 set :views, "views"
 set :database, {adapter: "postgresql", database: "flatreader_#{ENV['RACK_ENV']}"}
 
-
-configure :development, :production do
+def base_config
   # sessions
   set :sessions, :expire_after => 2592000, key: 'flatreader.session'
   set :session_secret, ENV['SESSION_SECRET']
 
   #logging
-  enable :logging, :dump_errors, :raise_errors
-  logger = Logger.new(File.open("./log/#{ENV['RACK_ENV']}.log"), "a+")
-  set :logger, logger
+  file = File.open("./log/#{ENV['RACK_ENV']}.log", "a+")
+  file.sync = true
+  use Rack::CommonLogger, file
 
-  #reloading
+  set :haml, format: :html5
+end
+
+configure :development do
+  base_config
+  enable :logging, :dump_errors, :raise_errors
   enable :reloader
 
   # errors
   use BetterErrors::Middleware
   BetterErrors.application_root = __dir__
-
-  set :haml, format: :html5
 end
 
 configure :production do
-  # sessions
-  set :sessions, :expire_after => 2592000, key: 'flatreader.session'
-  set :session_secret, ENV['SESSION_SECRET']
-
-  #logging
+  base_config
   enable :logging, :dump_errors
-  logger = Logger.new(File.open("./log/#{ENV['RACK_ENV']}.log", "a+"))
-  set :logger, logger
-
-  set :haml, format: :html5
 end
 
 before do
