@@ -29,7 +29,7 @@ def base_config
   set :session_secret, ENV['SESSION_SECRET']
 
   #logging
-  file = File.open("./log/#{ENV['RACK_ENV']}.log", "a+")
+  file = File.new("./log/#{ENV['RACK_ENV']}.log", "a+")
   file.sync = true
   use Rack::CommonLogger, file
 
