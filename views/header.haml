@@ -2,7 +2,14 @@
   flatreader
 
 %ul.navbar-nav.flex-row.ml-md-auto
-  - if current_user
+  - if @current_user
+    %li.nav-item.mr-1
+      %form{method: "post", action: "/search", class: "form-inline"}
+        .form-group
+          %input{name: "q", type: "text", class: "form-control"}
+          %button{type: "submit", class: "btn btn-success"}
+            search
+
     %li.nav-item.mr-1
       %a.btn.btn-primary{href: '/settings'}
         = @current_user.email

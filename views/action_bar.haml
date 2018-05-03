@@ -13,10 +13,3 @@
 
       .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
         = haml :create_source
-
-  %li.nav-item.dropdown
-    .dropdown.hide
-      %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"} search
-
-      .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
-        = haml :search

@@ -16,6 +16,10 @@ gem 'capistrano-passenger'
 gem 'capistrano-chruby'
 gem "capistrano-rails", "~> 1.3"
 
+# auth
+gem 'omniauth'
+gem 'omniauth-twitter', '~> 1.4'
+
 # server
 # gem 'puma'
 gem 'passenger'

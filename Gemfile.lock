@@ -63,6 +63,7 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
+    hashie (3.5.7)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.0.0)
@@ -97,6 +98,16 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     ntlm-http (0.1.1)
+    oauth (0.5.4)
+    omniauth (1.8.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-oauth (1.1.0)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-twitter (1.4.0)
+      omniauth-oauth (~> 1.1)
+      rack
     passenger (5.2.3)
       rack
       rake (>= 0.8.1)
@@ -181,6 +192,8 @@ DEPENDENCIES
   haml
   mechanize
   nokogiri
+  omniauth
+  omniauth-twitter (~> 1.4)
   passenger
   pg
   pry

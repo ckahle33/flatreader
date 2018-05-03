@@ -8,6 +8,8 @@ require "sinatra/flash"
 require "better_errors"
 require 'feedjira'
 require "pry"
+require 'omniauth'
+require 'omniauth-twitter'
 
 require 'dotenv'
 Dotenv.load
@@ -22,6 +24,10 @@ set :root, File.dirname(__FILE__)
 set :environment, ENV['RACK_ENV']
 set :views, "views"
 set :database, {adapter: "postgresql", database: "flatreader_#{ENV['RACK_ENV']}"}
+
+use OmniAuth::Builder do
+  provider :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET']
+end
 
 def base_config
   # sessions
@@ -154,10 +160,11 @@ get '/signup' do
 end
 
 post '/users' do
-  user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:params_confirmation])
+  user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
 
   if user.save!
     session[:user_id] = user.id
+    @current_user = user
     redirect '/'
   else
     flash['alert-danger'] = "there was some dumb error trying to create your account"
@@ -182,6 +189,25 @@ post '/login' do
   end
 end
 
+get '/auth/:name/callback' do
+  user = User.find_by(email: auth_hash.info.name)
+  if user
+    session[:user_id] = user.id
+    @current_user = user
+    redirect '/'
+  else
+    user = User.new(email: auth_hash.info.name, password: auth_hash['credentials']['token'], password_confirmation: auth_hash['credentials']['token'])
+    if user.save!
+      session[:user_id] = user.id
+      @current_user = user
+      redirect '/'
+    else
+      flash['alert-danger'] = "there was an error trying to create your account"
+      redirect '/'
+    end
+  end
+end
+
 get '/logout' do
   session.clear
   redirect '/login'
@@ -193,6 +219,10 @@ get '/settings' do
 end
 
 helpers do
+  def auth_hash
+    env['omniauth.auth']
+  end
+
   def authenticate!
     if session['user_id']
       @current_user ||= User.find(session['user_id'])
