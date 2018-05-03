@@ -16,5 +16,5 @@ set :linked_files, %w{.env log/*}
 set :ssh_options, {
   forward_agent: "true",
   auth_methods: ["publickey"],
-  keys: ["/Users/cpk/.ssh/flatreader.pub"]
+  keys: ["/Users/cpk/.ssh/flatreader"]
 }
