@@ -1,5 +1,6 @@
 require "rubygems"
 require "sinatra"
+require "pg"
 require "sinatra/reloader"
 require "sinatra/activerecord"
 require "sinatra/content_for"
@@ -19,14 +20,13 @@ require "./models/source"
 require "./models/article"
 require "./models/user"
 require "./models/user_source"
-require './workers/refresh_worker'
+# require './workers/refresh_worker'
 
 class App < Sinatra::Base
 
   set :root, File.dirname(__FILE__)
   set :environment, ENV['RACK_ENV']
   set :views, "views"
-  set :database, {adapter: "postgresql", database: "flatreader_#{ENV['RACK_ENV']}", pool: 10}
   register Sinatra::Flash
 
   use OmniAuth::Builder do
@@ -34,6 +34,12 @@ class App < Sinatra::Base
   end
 
   def self.base_config
+  ActiveRecord::Base.establish_connection(
+     :adapter  => 'postgresql',
+     :host     => 'localhost',
+     :database => "flatreader_#{ENV['RACK_ENV']}",
+     :encoding => 'utf8'
+   )
     # sessions
     set :sessions, :expire_after => 2592000, key: 'flatreader.session'
     set :session_secret, ENV['SESSION_SECRET']
@@ -47,8 +53,8 @@ class App < Sinatra::Base
   end
 
   configure :development do
-    register Sinatra::Reloader
     base_config
+    register Sinatra::Reloader
     enable :logging, :dump_errors, :raise_errors
 
     # errors
