@@ -1,5 +1,6 @@
 require 'sidekiq'
 require "sinatra/activerecord"
+require 'feedjira'
 require './models/source'
 
 class RefreshWorker

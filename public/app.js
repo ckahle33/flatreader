@@ -1,8 +1,12 @@
+import _ from 'lodash';
+import {$} from 'jquery';
+import 'bootstrap';
+
 $(function() {
   $('#exampleModalLong').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
-    console.log(button.data("url"))
     var modal = $(this)
+    modal.find('.modal-title').html(_.join(['hi', 'there'], ' '))
     modal.find('.modal-title').html(button.data("title"))
     modal.find('.modal-body').html(
       `

@@ -1,6 +1,7 @@
 require './app'
 require 'bundler/setup'
 require 'sidekiq/web'
+require 'sidekiq/cron/web'
 
 require File.expand_path '../app.rb', __FILE__
 

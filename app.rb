@@ -26,7 +26,7 @@ class App < Sinatra::Base
   set :root, File.dirname(__FILE__)
   set :environment, ENV['RACK_ENV']
   set :views, "views"
-  set :database, {adapter: "postgresql", database: "flatreader_#{ENV['RACK_ENV']}"}
+  set :database, {adapter: "postgresql", database: "flatreader_#{ENV['RACK_ENV']}", pool: 10}
   register Sinatra::Flash
 
   use OmniAuth::Builder do
@@ -47,9 +47,9 @@ class App < Sinatra::Base
   end
 
   configure :development do
+    register Sinatra::Reloader
     base_config
     enable :logging, :dump_errors, :raise_errors
-    enable :reloader
 
     # errors
     use BetterErrors::Middleware
