@@ -7,6 +7,7 @@ class RefreshWorker
   include Sidekiq::Worker
 
   def perform(id)
-    ::Source.find(id).refresh_feed
+    s = Source.find(id)
+    s.refresh_feed
   end
 end

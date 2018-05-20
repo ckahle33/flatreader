@@ -14,13 +14,17 @@ require 'omniauth-twitter'
 require 'sidekiq'
 require 'sidekiq-cron'
 require 'dotenv'
+require 'bundler'
+
 Dotenv.load
+Bundler.require(:default)
 
 require "./models/source"
 require "./models/article"
 require "./models/user"
 require "./models/user_source"
-# require './workers/refresh_worker'
+require './workers/refresh_worker'
+require './workers/refresh_all_worker'
 
 class App < Sinatra::Base
 
@@ -38,7 +42,8 @@ class App < Sinatra::Base
      :adapter  => 'postgresql',
      :host     => 'localhost',
      :database => "flatreader_#{ENV['RACK_ENV']}",
-     :encoding => 'utf8'
+     :encoding => 'utf8',
+     :pool => 30
    )
     # sessions
     set :sessions, :expire_after => 2592000, key: 'flatreader.session'

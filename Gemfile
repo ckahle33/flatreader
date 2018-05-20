@@ -13,6 +13,7 @@ gem 'will_paginate'
 gem 'capistrano', '~> 3.6'
 gem 'capistrano-bundler', '~> 1.3'
 gem 'capistrano-passenger'
+gem 'capistrano-npm'
 gem 'capistrano-chruby'
 gem "capistrano-rails", "~> 1.3"
 

@@ -11,6 +11,7 @@ class Source < ActiveRecord::Base
   end
 
   def refresh_feed
+    Feedjira.logger.level = ::Logger::FATAL
     feed = Feedjira::Feed.fetch_and_parse(self.url)
     self.update_attributes(name: feed.title, favicon:favicon)
     feed.entries.each do |article|
