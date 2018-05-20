@@ -4,6 +4,8 @@ class Source < ActiveRecord::Base
   after_create :refresh_feed
   has_many :articles
   has_many :users, through: :user_sources
+  has_many :source_tags
+  has_many :tags, through: :source_tags
 
   def favicon
     u = URI.parse(self.url)

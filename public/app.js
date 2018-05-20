@@ -1,12 +1,13 @@
 import _ from 'lodash';
 import $ from 'jquery';
 import 'bootstrap';
+import 'selectize/dist/js/standalone/selectize.min.js';
+
 
 $(function() {
-  $('#exampleModalLong').on('show.bs.modal', function(event) {
+  $('#articleModalLong').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var modal = $(this)
-    modal.find('.modal-title').html(_.join(['hi', 'there'], ' '))
     modal.find('.modal-title').html(button.data("title"))
     modal.find('.modal-body').html(
       `
@@ -23,4 +24,17 @@ $(function() {
     $('.flash').addClass('d-none');
     clearTimeout(timeout);
   }
+
+  $('#sourceModalLong').on('show.bs.modal', function(event) {
+    $("#source_tags").selectize({
+      delimiter: ',',
+      persist: false,
+      create: function(input) {
+          return {
+              value: input,
+              text: input
+          }
+      }
+    })
+  })
 })

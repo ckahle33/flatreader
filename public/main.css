@@ -56,4 +56,43 @@ footer {
 .modal-content img, iframe {
   max-width: 100%; }
 
+.tag {
+  padding: 0.5em;
+  color: #fff;
+  display: inline-block;
+  font-size: 0.9em; }
+  .tag:hover {
+    color: #fff;
+    cursor: pointer; }
+
+.selectize-input {
+  cursor: text;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 100%;
+  padding: 8px 8px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 0.2em; }
+  .selectize-input .item {
+    float: left;
+    padding: 0.3em;
+    display: inline-block;
+    border: 1px solid #eee;
+    margin-right: 0.2em; }
+  .selectize-input input {
+    outline: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    padding: 0; }
+
+.selectize-control {
+  padding: 0.2em; }
+
 /*# sourceMappingURL=main.css.map */

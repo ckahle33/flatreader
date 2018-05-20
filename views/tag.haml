@@ -1,0 +1,15 @@
+.col.col-9
+  %h3
+    Tag:
+    = @tag.name
+
+  %ul{class: "p-0"}
+    - @tag.sources.each do |s|
+      %li
+        %span
+          %image.favicon{src: "#{s.favicon}"}
+        %a{href: "#{base_url}/sources/#{s.id}"}
+          = s.name
+          |
+          %a{href: "/add/#{s.id}"}
+            add

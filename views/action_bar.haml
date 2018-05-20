@@ -1,15 +1,16 @@
 %ul.nav
   %li.nav-item
     %a.nav-link{href: "/"}
-      my feed
+      My Feed
 
   %li.nav-item
     %a.nav-link{href: "/all"}
-      all sources
+      All Sources
 
-  %li.nav-item.dropdown
+  %li.nav-item
+    %a.nav-link{href: "/tags"}
+      All Tags
+
+  %li.nav-item
     .dropdown.hide
-      %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}add source
-
-      .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
-        = haml :create_source
+      %a.nav-link{"data-toggle": "modal", "data-target":"#sourceModalLong", href: "#", role: "button"}Add Source

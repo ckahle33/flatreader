@@ -1,11 +1,11 @@
 require "rubygems"
 require "sinatra"
-require "pg"
 require "sinatra/reloader"
 require "sinatra/activerecord"
 require "sinatra/content_for"
-require 'logger'
 require "sinatra/flash"
+require "pg"
+require 'logger'
 require "better_errors"
 require 'feedjira'
 require "pry"
@@ -23,6 +23,8 @@ Bundler.require(:default)
 require "./models/source"
 require "./models/article"
 require "./models/user"
+require "./models/tag"
+require "./models/source_tag"
 require "./models/user_source"
 require './workers/refresh_worker'
 require './workers/refresh_all_worker'
@@ -59,8 +61,10 @@ class App < Sinatra::Base
   end
 
   configure :development do
-    base_config
     register Sinatra::Reloader
+    set :reload_templates, true
+
+    base_config
     enable :logging, :dump_errors, :raise_errors
 
     # errors
@@ -132,10 +136,17 @@ class App < Sinatra::Base
   post '/create' do
     authenticate!
     url = URI.parse(params[:url])
+    tags = params[:tags]
     begin
       source = Source.find_or_create_by!(url: url.to_s)
       if source
-        UserSource.find_or_create_by!(source_id: source.id, user_id: @current_user['id'])
+        s = UserSource.find_or_create_by!(source_id: source.id, user_id: @current_user['id'])
+        if tags
+          tags.split(',').each do |t|
+            t = Tag.find_or_create_by(name: t)
+            SourceTag.create(tag_id: t.id, source_id: s.id)
+          end
+        end
         flash['alert-success'] = "saved!"
         redirect back
       end
@@ -154,19 +165,22 @@ class App < Sinatra::Base
     # redirect "/search?q=#{query}"
   end
 
-  get '/search' do
-    authenticate!
-    query = params["q"]
-    @sources = Source.where("name ILIKE ?", "%#{query}%")
-    haml :all, layout: :main
-  end
-
   get '/refresh/:id' do
     id = params[:id] if params[:id]
     s = Source.find(id.to_i)
     s.refresh_feed
     flash['alert-success'] = "feed refreshed!"
     redirect back
+  end
+
+  get '/tags' do
+    @tags = Tag.all
+    haml :tags, layout: :main
+  end
+
+  get '/tag/:id' do
+    @tag  = Tag.find(params[:id])
+    haml :tag, layout: :main
   end
 
   # move these to separate file

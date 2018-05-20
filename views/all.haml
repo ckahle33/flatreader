@@ -1,18 +1,19 @@
 - if current_user
   .col.col-9
     %h3
-      all sources
+      All Sources
 
     - if @sources
-      - @sources.each do |s|
-        %li
-          %span
-            %image.favicon{src: "#{s.favicon}"}
-          %a{href: "#{base_url}/sources/#{s.id}"}
-            = s.name.downcase
-            |
-            %a{href: "/add/#{s.id}"}
-              add
+      %ul{class: "p-0"}
+        - @sources.each do |s|
+          %li
+            %span
+              %image.favicon{src: "#{s.favicon}"}
+            %a{href: "#{base_url}/sources/#{s.id}"}
+              = s.name.downcase
+              |
+              %a{href: "/add/#{s.id}"}
+                add
     - else
       no sources to list
 - else

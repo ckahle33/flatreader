@@ -1,13 +1,14 @@
 .col-12.col-lg-12
-  %small
-    these will be searchable for other users
-  %br
-  %small
-    rss or atom format only
-
-  %form{method: "post", action: "/create", class: "form-inline"}
+  %form{method: "post", action: "/create"}
     .form-group
-      %input{name: "url", type: "text", class: "form-control"}
+      %label{for: "feed_url"}
+        Feed URL
+      %input{name: "url", type: "text", class: "form-control",id: "feed_url"}
+    .form-group
+      %label{for: "source_tags"}
+        Tags
+      %input{name: "tags", type: "text", class: "form-control", id: "source_tags"}
+    .form-group
       %button{type: "submit", class: "btn btn-primary"}
         add
 

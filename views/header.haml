@@ -8,18 +8,18 @@
         .form-group
           %input{name: "q", type: "text", class: "form-control"}
           %button{type: "submit", class: "btn btn-success"}
-            search
+            Search
 
     %li.nav-item.mr-1
       %a.btn.btn-primary{href: '/settings'}
         = @current_user.email
     %li.nav-item.mr-1
       %a.btn.btn-primary{href: '/logout'}
-        logout
+        Logout
   - else
     %li.nav-item.mr-1
       %a.btn.btn-primary{href: '/signup'}
-        signup
+        Sign Up
     %li.nav-item
       %a.btn.btn-primary{href: '/login'}
-        login
+        Log In
