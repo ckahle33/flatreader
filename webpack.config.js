@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CompressionPlugin = require("compression-webpack-plugin")
 
 module.exports = {
   entry: './public/app.js',
@@ -8,6 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public')
   },
   plugins: [
+    new CompressionPlugin(),
     new webpack.ProvidePlugin({
         '$': "jquery",
         'jQuery': "jquery",

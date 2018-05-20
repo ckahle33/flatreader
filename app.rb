@@ -13,6 +13,7 @@ require 'omniauth'
 require 'omniauth-twitter'
 require 'sidekiq'
 require 'sidekiq-cron'
+
 require 'dotenv'
 require 'bundler'
 
