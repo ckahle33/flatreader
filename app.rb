@@ -140,11 +140,11 @@ class App < Sinatra::Base
     begin
       source = Source.find_or_create_by!(url: url.to_s)
       if source
-        s = UserSource.find_or_create_by!(source_id: source.id, user_id: @current_user['id'])
+        UserSource.find_or_create_by!(source_id: source.id, user_id: @current_user['id'])
         if tags
           tags.split(',').each do |t|
             t = Tag.find_or_create_by(name: t)
-            SourceTag.create(tag_id: t.id, source_id: s.id)
+            SourceTag.create(tag_id: t.id, source_id: source.id)
           end
         end
         flash['alert-success'] = "saved!"
