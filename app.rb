@@ -248,6 +248,18 @@ class App < Sinatra::Base
     haml :settings, layout: :main
   end
 
+  post '/settings' do
+    authenticate!
+    articles_per_source = params[:articles_per_source]
+    if current_user.update(articles_per_source: articles_per_source)
+      flash['alert-success'] = "Settings saved!"
+      redirect back
+    else
+      flash['alert-error'] = "Error saving settings..."
+      redirect back
+    end
+  end
+
   helpers do
     def auth_hash
       env['omniauth.auth']
