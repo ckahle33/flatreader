@@ -36,7 +36,7 @@ gem 'binding_of_caller'
 
 # db
 gem 'pg'
-gem 'activerecord'
+gem 'activerecord', '~> 5.2.3'
 gem 'sinatra-activerecord'
 
 # http
