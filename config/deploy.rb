@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.10.0"
+lock "~> 3.11.1"
 
 set :application, "flatreader"
 set :repo_url, "git@github.com:ckahle33/flatreader.git"
@@ -7,6 +7,8 @@ set :user, "flatreader"
 
 set :deploy_to, "/home/flatreader"
 set :tmp_dir, "/home/flatreader/tmp"
+
+set :npm_flags, '--production'
 
 set :chruby_ruby, 'ruby-2.5.0'
 set :passenger_restart_with_touch, true
