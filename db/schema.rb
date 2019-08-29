@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(version: 2019_08_29_180506) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["source_id", "published_at"], name: "index_articles_on_source_id_and_published_at"
+    t.index ["published_at"], name: "index_articles_on_published_at"
+    t.index ["source_id"], name: "index_articles_on_source_id"
   end
 
   create_table "source_tags", force: :cascade do |t|
