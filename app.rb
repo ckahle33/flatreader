@@ -57,7 +57,7 @@ class App < Sinatra::Base
     file.sync = true
     use Rack::CommonLogger, file
 
-    set :haml, format: :html5
+    set :haml, {escape_html: false}
   end
 
   configure :development do

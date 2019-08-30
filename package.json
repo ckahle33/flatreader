@@ -26,7 +26,7 @@
     "popper.js": "^1.15.0",
     "selectize": "^0.12.6",
     "webpack": "^4.39.3",
-    "webpack-cli": "^2.1.5"
+    "webpack-cli": "^3.1.1"
   },
   "dependencies": {
     "babel-preset-env": "^1.7.0"

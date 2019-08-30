@@ -23,11 +23,11 @@ gem 'omniauth'
 gem 'omniauth-twitter', '~> 1.4'
 
 # server
-# gem 'puma'
+gem 'puma'
 gem 'passenger'
 
 # view
-gem 'haml'
+gem 'hamlit'
 gem 'sinatra-flash'
 
 # errors
