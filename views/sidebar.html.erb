@@ -1,0 +1,20 @@
+<% if @user_sources %>
+  <ul class="sidebar">
+    <% @user_sources.each do |us| %>
+      <li>
+        <span>
+          <image class="favicon" src="<%= us.source.favicon %>"></image>
+        </span>
+        <a href="<%= base_url %>/sources/<%= us.source.id %>">
+          <%= us.source.name.downcase %>
+          |
+          <a href="/remove/<%= us.id %>">
+            remove
+          </a>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  add sources to your feed
+<% end %>

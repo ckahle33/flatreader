@@ -1,0 +1,23 @@
+<h3>
+  <a href="<%= @article.url %>">
+    <%= @article.title %>
+  </a>
+</h3>
+<p>
+  <b>
+    published at:
+  </b>
+  <%= @article.published_at %>
+</p>
+<p>
+  <b>
+    summary:
+  </b>
+</p>
+<% if @body %>
+  <% @body.each do |p| %>
+    <p>
+      <%= p.gsub("[", " ").gsub("]", " ") %>
+    </p>
+  <% end %>
+<% end %>

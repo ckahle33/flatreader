@@ -1,0 +1,22 @@
+<div class="col col-9">
+  <h3>
+    Tag:
+    <%= @tag.name %>
+  </h3>
+  <ul class="p-0">
+    <% @tag.sources.each do |s| %>
+      <li>
+        <span>
+          <image class="favicon" src="<%= s.favicon %>"></image>
+        </span>
+        <a href="<%= base_url %>/sources/<%= s.id %>">
+          <%= s.name %>
+          |
+          <a href="/add/<%= s.id %>">
+            add
+          </a>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -28,8 +28,11 @@ require "./models/source_tag"
 require "./models/user_source"
 require './workers/refresh_worker'
 require './workers/refresh_all_worker'
+require 'tilt'
 
 class App < Sinatra::Base
+
+  Tilt.register Tilt::ERBTemplate, 'html.erb'
 
   set :root, File.dirname(__FILE__)
   set :environment, ENV['RACK_ENV']
@@ -57,7 +60,7 @@ class App < Sinatra::Base
     file.sync = true
     use Rack::CommonLogger, file
 
-    set :haml, {escape_html: false}
+    set :erb, {escape_html: false}
   end
 
   configure :development do
@@ -87,9 +90,9 @@ class App < Sinatra::Base
   get '/' do
     if @current_user
       @articles = Article.where(source_id: user_source_ids).where.not(published_at: nil).order('published_at DESC').limit(100) # will paginate here
-      haml :index, layout: :main
+      erb :index, layout: :main
     else
-      haml :splash, layout: :main
+      erb :splash, layout: :main
     end
   end
 
@@ -97,7 +100,7 @@ class App < Sinatra::Base
     authenticate!
     @sources = Source.all
     # @articles = Article.all.where.not(published_at: nil).order('published_at DESC').limit(100)
-    haml :all, layout: :main
+    erb :all, layout: :main
   end
 
   get '/sources/:source_id' do
@@ -105,7 +108,7 @@ class App < Sinatra::Base
     @source   = Source.find(params['source_id'].to_i)
     @articles = Article.where(source_id: params['source_id']).order(published_at: :desc).limit(30)
 
-    haml :source, layout: :main
+    erb :source, layout: :main
   end
 
   get '/add/:source_id' do
@@ -161,7 +164,7 @@ class App < Sinatra::Base
     query = params["q"]
 
     @sources = Source.where("name ILIKE ?", "%#{query}%")
-    haml :all, layout: :main
+    erb :all, layout: :main
     # redirect "/search?q=#{query}"
   end
 
@@ -175,18 +178,18 @@ class App < Sinatra::Base
 
   get '/tags' do
     @tags = Tag.all
-    haml :tags, layout: :main
+    erb :tags, layout: :main
   end
 
   get '/tag/:id' do
     @tag  = Tag.find(params[:id])
-    haml :tag, layout: :main
+    erb :tag, layout: :main
   end
 
   # move these to separate file
 
   get '/signup' do
-    haml :signup, layout: :main
+    erb :signup, layout: :main
   end
 
   post '/users' do
@@ -203,7 +206,7 @@ class App < Sinatra::Base
   end
 
   get '/login' do
-    haml :login, layout: :main
+    erb :login, layout: :main
   end
 
   post '/login' do
@@ -245,7 +248,7 @@ class App < Sinatra::Base
 
   get '/settings' do
     # dark mode toggle handling here
-    haml :settings, layout: :main
+    erb :settings, layout: :main
   end
 
   post '/settings' do

@@ -1,0 +1,30 @@
+<div class="col col-9">
+  <h3>
+    <span>
+      <image class="favicon" src="<%= @source.favicon %>"></image>
+    </span>
+    <%= @source.name %>
+  </h3>
+  <!--/ should be queued in a worker
+  -->
+  <a class="badge badge-success" href="/refresh/<%= @source.id %>">
+    Refresh Feed
+  </a>
+  <div class="tags">
+    <% @source.tags.each do |t| %>
+      <a class="badge badge-info" href="/tag/<%= t.id %>">
+        <%= t.name %>
+      </a>
+    <% end %>
+    <ul></ul>
+    <% @articles.each do |a| %>
+      <li>
+        <%= a.published_at.strftime('%m/%d/%Y') if a.published_at %>
+        |
+        <a data-body="<%= a.body %>" data-target="#articleModalLong" data-title="<%= a.title %>" data-toggle="modal" data-url="<%= a.url %>" href="#">
+          <%= a.title %>
+        </a>
+      </li>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="col col-9">
+  <h3>
+    Settings
+  </h3>
+  <form action="/settings" method="post">
+    <div class="form-group">
+      <label for="articles_per_source">
+        Articles per source in my feed
+      </label>
+      <select class="form-control" id="articles_per_source" name="articles_per_source" type="text">
+        <% 1.upto(20) do |i| %>
+          <option selected="<%= current_user.articles_per_source == i %>" value="<%= i %>">
+            <%= i %>
+          </option>
+        <% end %>
+      </select>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

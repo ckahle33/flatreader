@@ -1,0 +1,29 @@
+<% if current_user %>
+  <div class="col col-9">
+    <h3>
+      All Sources
+    </h3>
+    <% if @sources %>
+      <ul class="p-0">
+        <% @sources.each do |s| %>
+          <li>
+            <span>
+              <image class="favicon" src="<%= s.favicon %>"></image>
+            </span>
+            <a href="<%= base_url %>/sources/<%= s.id %>">
+              <%= s.name.downcase %>
+              |
+              <a href="/add/<%= s.id %>">
+                add
+              </a>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      no sources to list
+    <% end %>
+  </div>
+<% else %>
+  <%= render :about %>
+<% end %>
