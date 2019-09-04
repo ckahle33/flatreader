@@ -21,7 +21,7 @@
       <li>
         <%= a.published_at.strftime('%m/%d/%Y') if a.published_at %>
         |
-        <a data-body="<%= a.body %>" data-target="#articleModalLong" data-title="<%= a.title %>" data-toggle="modal" data-url="<%= a.url %>" href="#">
+        <a data-body="<%= h(a.body) %>" data-target="#articleModalLong" data-title="<%= a.title %>" data-toggle="modal" data-url="<%= a.url %>" href="#">
           <%= a.title %>
         </a>
       </li>

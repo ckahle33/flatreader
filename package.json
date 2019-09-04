@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "parcel views/main.haml.html",
-    "build": "parcel build views/main.haml.html"
+    "dev": "parcel views/main.html.erb",
+    "build": "parcel build views/main.html.erb"
   },
   "repository": {
     "type": "git",
@@ -21,10 +21,22 @@
   "devDependencies": {
     "lodash": "^4.17.15",
     "popper.js": "^1.15.0",
-    "selectize": "^0.12.6"
+    "selectize": "^0.12.6",
+    "webpack-cli": "^3.3.7"
   },
   "dependencies": {
+    "@babel/core": "^7.5.5",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "micromodal": "^0.4.0"
+    "bootstrap": "^4.3.1",
+    "bootstrap.native": "^2.0.27",
+    "compression-webpack-plugin": "^3.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "jquery": "^3.4.1",
+    "micromodal": "^0.4.0",
+    "webpack": "^4.39.3"
   }
 }

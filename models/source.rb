@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'httparty'
 
 class Source < ActiveRecord::Base
   after_create :refresh_feed
@@ -14,7 +15,8 @@ class Source < ActiveRecord::Base
 
   def refresh_feed
     Feedjira.logger.level = ::Logger::FATAL
-    feed = Feedjira::Feed.fetch_and_parse(self.url)
+    xml = HTTParty.get(self.url).body
+    feed = Feedjira.parse(xml)
     self.update_attributes(name: feed.title, favicon:favicon)
     feed.entries.each do |article|
       a = Article.find_or_initialize_by({

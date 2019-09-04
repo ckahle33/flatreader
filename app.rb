@@ -60,7 +60,7 @@ class App < Sinatra::Base
     file.sync = true
     use Rack::CommonLogger, file
 
-    set :erb, {escape_html: false}
+    set :erb, {escape_html: true}
   end
 
   configure :development do
@@ -286,6 +286,10 @@ class App < Sinatra::Base
 
     def user_source_ids
       current_user.sources.map(&:id) if current_user
+    end
+
+    def h(text)
+      Rack::Utils.escape_html(text)
     end
   end
 

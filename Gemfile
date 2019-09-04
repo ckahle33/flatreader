@@ -43,6 +43,7 @@ gem 'sinatra-activerecord'
 gem 'rest-client'
 
 # rss / parsing
+gem 'httparty'
 gem 'feedjira'
 gem 'nokogiri'
 gem 'mechanize'

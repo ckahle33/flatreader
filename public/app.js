@@ -3,7 +3,6 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'selectize/dist/js/standalone/selectize.min.js';
 
-
 $(function() {
   $('#articleModalLong').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
