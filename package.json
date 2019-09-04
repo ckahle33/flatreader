@@ -4,8 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "parcel views/main.html.erb",
-    "build": "parcel build views/main.html.erb"
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
