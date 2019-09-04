@@ -17,7 +17,6 @@ gem 'capistrano-passenger'
 gem 'capistrano-npm'
 gem 'capistrano-chruby'
 gem "capistrano-rails", "~> 1.3"
-gem "capistrano-sidekiq"
 
 # auth
 gem 'omniauth'
