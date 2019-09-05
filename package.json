@@ -20,8 +20,7 @@
   "devDependencies": {
     "lodash": "^4.17.15",
     "popper.js": "^1.15.0",
-    "selectize": "^0.12.6",
-    "webpack-cli": "^3.3.7"
+    "selectize": "^0.12.6"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
@@ -36,6 +35,7 @@
     "gulp-uglify": "^3.0.2",
     "jquery": "^3.4.1",
     "micromodal": "^0.4.0",
-    "webpack": "^4.39.3"
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
   }
 }

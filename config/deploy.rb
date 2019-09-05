@@ -13,7 +13,8 @@ set :npm_flags, '--production'
 set :chruby_ruby, 'ruby-2.5.0'
 set :passenger_restart_with_touch, true
 
-set :linked_files, %w{.env log/*}
+set :linked_files, %w{ .env }
+set :linked_dirs, %w{ log }
 
 set :ssh_options, {
   forward_agent: "true",
@@ -25,6 +26,10 @@ after "deploy", "deploy:webpack_build"
 
 namespace :deploy do
   task :webpack_build do
-    run "webpack --config webpack.config.js"
+    on roles(:app) do
+      within current_path do
+        execute "npx webpack --config webpack.config.js"
+      end
+    end
   end
 end
