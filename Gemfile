@@ -27,7 +27,6 @@ gem 'puma'
 gem 'passenger'
 
 # view
-gem 'hamlit'
 gem 'sinatra-flash'
 
 # errors

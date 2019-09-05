@@ -20,3 +20,11 @@ set :ssh_options, {
   auth_methods: ["publickey"],
   keys: ["/Users/cpk/.ssh/flatreader"]
 }
+
+after "deploy", "deploy:webpack_build"
+
+namespace :deploy do
+  task :webpack_build do
+    run "webpack --config webpack.config.js"
+  end
+end
