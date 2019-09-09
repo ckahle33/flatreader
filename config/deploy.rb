@@ -28,7 +28,7 @@ namespace :deploy do
   task :webpack_build do
     on roles(:app) do
       within current_path do
-        execute "npx webpack --config webpack.config.js"
+        execute "webpack --config webpack.config.js"
       end
     end
   end
