@@ -1,4 +1,4 @@
-<div class="col col-9">
+<div class="column column-75">
   <h3>
     My Feed
   </h3>
@@ -11,7 +11,7 @@
       <span>
         <%= a.published_at.strftime('%m/%d/%Y') if a.published_at %>
       </span>
-      <a href="#" data-body=<%= h(a.body) %> data-toggle="modal" data-target="#articleModalLong" data-title=<%= a.title %> data-url=<%= a.url %>>
+      <a href="#" data-body=<%= h(a.body) %>  data-micromodal-trigger="articleModalLong" data-title=<%= a.title %> data-url=<%= a.url %>>
         <%= a.title %>
       </a>
     </li>

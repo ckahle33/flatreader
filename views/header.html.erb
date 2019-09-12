@@ -1,38 +1,58 @@
-<a class="navbar-brand" href="/">
-  flatreader
-</a>
-<ul class="navbar-nav flex-row ml-md-auto">
-  <% if @current_user %>
-    <li class="nav-item mr-1">
-      <form action="/search" class="form-inline search" method="post">
-        <div class="form-group">
-          <input class="form-control" name="q" type="text"></input>
-          <button class="btn btn-success" type="submit">
-            Search
-          </button>
-        </div>
-      </form>
-    </li>
-    <li class="nav-item mr-1">
-      <a class="btn btn-primary" href="/settings">
-        <%= @current_user.email %>
-      </a>
-    </li>
-    <li class="nav-item mr-1">
-      <a class="btn btn-primary" href="/logout">
-        Log Out
-      </a>
-    </li>
-  <% else %>
-    <li class="nav-item mr-1">
-      <a class="btn btn-primary" href="/signup">
-        Sign Up
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="btn btn-primary" href="/login">
-        Log In
-      </a>
-    </li>
-  <% end %>
-</ul>
+<div class="pure-menu"
+  <a class="pure-menu-heading" href="/">
+    flatreader
+  </a>
+  <ul class="pure-menu-list">
+    <% if @current_user %>
+      <li class="pure-menu-item">
+        <form action="/search" class="form-inline search" method="post">
+          <div class="form-group">
+            <input class="form-control" name="q" type="text"></input>
+            <button class="btn btn-success" type="submit">
+              Search
+            </button>
+          </div>
+        </form>
+      </li>
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/settings">
+          <%= @current_user.email %>
+        </a>
+      </li>
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/logout">
+          Log Out
+        </a>
+      </li>
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          My Feed
+        </a>
+      </li>
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/all">
+          All Sources
+        </a>
+      </li>
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/tags">
+          All Tags
+        </a>
+      </li>
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="#">Add Source</a>
+      </li>
+    <% else %>
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/signup">
+          Sign Up
+        </a>
+      </li>
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/login">
+          Log In
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>

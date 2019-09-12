@@ -1,39 +1,69 @@
-import _ from 'lodash';
-import $ from 'jquery';
-import 'bootstrap';
-import 'selectize/dist/js/standalone/selectize.min.js';
+document.addEventListener("DOMContentLoaded", function() {
 
-$(function() {
-  $('#articleModalLong').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget)
-    var modal = $(this)
-    modal.find('.modal-title').html(button.data("title"))
-    modal.find('.modal-body').html(
-      `
-      <a href="${button.data('url')}" target="_blank">read more</a>
-      <br>
-      ${button.data("body")}
-      `
-    )
-  })
+    // MicroModal.init();
+      // onShow: modal => {
+      //   let button = modal.find('button')
+      //   modal.find('.modal-title').html(button.data("title"))
+      //   modal.find('.modal-body').html(
+      //     `
+      //     <a href="${button.data('url')}" target="_blank">read more</a>
+      //     <br>
+      //     ${button.data("body")}
+      //     `
+      //   )
+      // }
 
-  var timeout = setTimeout(hideFlash, 2000)
+    // const choices = new Choices(document.getElementById("source_tags"))
 
-  function hideFlash() {
-    $('.flash').addClass('d-none');
-    clearTimeout(timeout);
-  }
 
-  $('#sourceModalLong').on('show.bs.modal', function(event) {
-    $("#source_tags").selectize({
-      delimiter: ',',
-      persist: false,
-      create: function(input) {
-          return {
-              value: input,
-              text: input
-          }
-      }
-    })
-  })
 })
+
+
+
+// Pure.css layout code
+(function (window, document) {
+
+    var layout   = document.getElementById('layout'),
+        menu     = document.getElementById('menu'),
+        menuLink = document.getElementById('menuLink'),
+        content  = document.getElementById('main');
+
+    function toggleClass(element, className) {
+        var classes = element.className.split(/\s+/),
+            length = classes.length,
+            i = 0;
+
+        for(; i < length; i++) {
+          if (classes[i] === className) {
+            classes.splice(i, 1);
+            break;
+          }
+        }
+        // The className is not found
+        if (length === classes.length) {
+            classes.push(className);
+        }
+
+        element.className = classes.join(' ');
+    }
+
+    function toggleAll(e) {
+        var active = 'active';
+
+        e.preventDefault();
+        toggleClass(layout, active);
+        toggleClass(menu, active);
+        toggleClass(menuLink, active);
+    }
+
+    menuLink.onclick = function (e) {
+        toggleAll(e);
+    };
+
+    content.onclick = function(e) {
+        if (menu.className.indexOf('active') !== -1) {
+            toggleAll(e);
+        }
+    };
+
+}(this, this.document));

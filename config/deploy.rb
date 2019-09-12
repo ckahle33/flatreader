@@ -22,13 +22,13 @@ set :ssh_options, {
   keys: ["/Users/cpk/.ssh/flatreader"]
 }
 
-after "deploy", "deploy:webpack_build"
+after "deploy", "deploy:webpack"
 
 namespace :deploy do
-  task :webpack_build do
+  task :webpack do
     on roles(:app) do
-      within current_path do
-        execute "webpack --config webpack.config.js"
+      within release_path do
+        execute("cd #{release_path} && yarn install && yarn build")
       end
     end
   end
