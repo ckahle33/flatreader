@@ -111,6 +111,12 @@ class App < Sinatra::Base
     erb :source, layout: :main
   end
 
+  get '/articles/:article_id' do
+    @article = Article.find(params['article_id'].to_i)
+
+    erb :article, layout: :main
+  end
+
   get '/add/:source_id' do
     authenticate!
     @source   = Source.find(params['source_id'].to_i)
@@ -134,6 +140,10 @@ class App < Sinatra::Base
       redirect back
     end
 
+  end
+
+  get '/create' do
+    erb :create_source, layout: :main
   end
 
   post '/create' do

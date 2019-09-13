@@ -1,7 +1,10 @@
 <% if @user_sources %>
-  <ul class="sidebar">
+  <h3>
+    My Sources
+  </h3>
+  <ul class="pure-menu-list">
     <% @user_sources.each do |us| %>
-      <li>
+      <li class="pure-menu-item">
         <span>
           <image class="favicon" src="<%= us.source.favicon %>"></image>
         </span>
@@ -15,6 +18,10 @@
       </li>
     <% end %>
   </ul>
+
+  <a class="nav-link" href="mailto:ckahle33@gmail.com">
+    Feedback / Comments
+  </a>
 <% else %>
   add sources to your feed
 <% end %>

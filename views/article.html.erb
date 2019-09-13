@@ -1,23 +1,23 @@
-<h3>
-  <a href="<%= @article.url %>">
-    <%= @article.title %>
-  </a>
-</h3>
-<p>
-  <b>
-    published at:
-  </b>
-  <%= @article.published_at %>
-</p>
-<p>
-  <b>
-    summary:
-  </b>
-</p>
-<% if @body %>
-  <% @body.each do |p| %>
+<div id="main" class="pure-g">
+  <div class="pure-u article">
+    <a href="/sources/<%= @article.source_id%>">
+      < Back to <%= @article.source.name %>
+    </a>
+    <h3>
+      <a href="<%= @article.url %>">
+        <%= @article.title %>
+      </a>
+    </h3>
     <p>
-      <%= p.gsub("[", " ").gsub("]", " ") %>
+      <b>
+        published at:
+      </b>
+      <%= @article.published_at %>
     </p>
-  <% end %>
-<% end %>
+    <% if @article.body %>
+      <p>
+        <%= @article.body %>
+      </p>
+    <% end %>
+  </div>
+</div>

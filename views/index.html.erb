@@ -1,7 +1,4 @@
-<div class="column column-75">
-  <h3>
-    My Feed
-  </h3>
+<div class="pure-u-3-3">
   <ul></ul>
   <% @articles.each do |a| %>
     <li>
@@ -11,7 +8,7 @@
       <span>
         <%= a.published_at.strftime('%m/%d/%Y') if a.published_at %>
       </span>
-      <a href="#" data-body=<%= h(a.body) %>  data-micromodal-trigger="articleModalLong" data-title=<%= a.title %> data-url=<%= a.url %>>
+      <a href="/articles/<%= a.id %>">
         <%= a.title %>
       </a>
     </li>

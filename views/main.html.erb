@@ -9,27 +9,22 @@
   </head>
   <body>
     <div id="layout">
-      <div id="menu">
-        <%= erb :header %>
+      <div id="nav">
+        <%= erb :sidenav %>
+      </div>
+      <div id="list" class="pure-u-1">
+        <% if current_user %>
+          <%= erb :sidebar %>
+        <% end %>
       </div>
       <div class="row flash-containter">
         <%= styled_flash %>
       </div>
-      <div class="row p-3">
-        <% if current_user %>
-          <div class="column column-25">
-            <%= erb :sidebar %>
-          </div>
-        <% end %>
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
     <footer class="navbar">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="mailto:ckahle33@gmail.com">
-            Feedback / Comments
-          </a>
         </li>
       </ul>
     </footer>

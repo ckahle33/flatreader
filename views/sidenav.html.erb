@@ -1,14 +1,14 @@
-<div class="pure-menu"
+<div class="nav-inner">
   <a class="pure-menu-heading" href="/">
     flatreader
   </a>
   <ul class="pure-menu-list">
     <% if @current_user %>
       <li class="pure-menu-item">
-        <form action="/search" class="form-inline search" method="post">
+        <form action="/search" class="pure-form" method="post">
           <div class="form-group">
             <input class="form-control" name="q" type="text"></input>
-            <button class="btn btn-success" type="submit">
+            <button class="pure-button pure-button-primary" type="submit">
               Search
             </button>
           </div>
@@ -25,11 +25,6 @@
         </a>
       </li>
       <li class="pure-menu-item">
-        <a class="pure-menu-link" href="/">
-          My Feed
-        </a>
-      </li>
-      <li class="pure-menu-item">
         <a class="pure-menu-link" href="/all">
           All Sources
         </a>
@@ -40,7 +35,7 @@
         </a>
       </li>
       <li class="pure-menu-item">
-        <a class="pure-menu-link" href="#">Add Source</a>
+        <a class="pure-menu-link" href="/create">Add Source</a>
       </li>
     <% else %>
       <li class="pure-menu-item">
