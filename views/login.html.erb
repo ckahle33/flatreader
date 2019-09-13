@@ -1,23 +1,28 @@
-<div class="col-12 col-lg-12 login">
-  <h3>
-    Log In
-  </h3>
-  <form action="/login" class="signup" method="post">
-    <div class="form-group">
-      <label for="email">
-        email
-      </label>
-      <input class="form-control" id="email" name="email" type="text"></input>
-    </div>
-    <div class="form-group">
-      <label for="password">
-        password
-      </label>
-      <input class="form-control" name="password" type="password"></input>
-      <br/>
-      <button class="btn btn-primary" type="submit">
-        go
-      </button>
-    </div>
-  </form>
+<div class="pure-g">
+  <div class="pure-u">
+    <h2>
+      Log In
+    </h2>
+    <form action="/login" class="pure-form pure-form-stacked" method="post">
+      <div class="form-group">
+        <label for="email">
+          email
+        </label>
+        <input class="form-control" id="email" name="email" type="text"></input>
+      </div>
+      <div class="form-group">
+        <label for="password">
+          password
+        </label>
+        <input class="form-control" name="password" type="password"></input>
+        <br/>
+        <button class="pure-button pure-button-primary" type="submit">
+          go
+        </button>
+      </div>
+    </form>
+    <a href="/auth/twitter" style="color: #1dcaff;">
+      Log In with Twitter
+    </a>
+  </div>
 </div>

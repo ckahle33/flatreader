@@ -198,7 +198,7 @@ a {
 
     /* Move the layout over so we can fit the nav + list in on the left */
     #layout {
-        padding-left:500px; /* "left col (nav + list)" width */
+        padding-left:550px; /* "left col (nav + list)" width */
         position: relative;
     }
 
@@ -210,8 +210,8 @@ a {
         overflow: auto;
     }
     #nav {
-        margin-left:-500px; /* "left col (nav + list)" width */
-        width:150px;
+        left: 0; /* "left col (nav + list)" width */
+        width:200px;
         height: 100%;
     }
 
@@ -226,7 +226,7 @@ a {
     }
 
     #list {
-        margin-left: -350px;
+        margin-left: -300px;
         width: 100%;
         height: 33%;
         border-bottom: 1px solid #ddd;
@@ -270,16 +270,25 @@ a {
 /* CUSTOM CODE
  * */
 
-html {
-  font-size: 14px;
+body {
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 li {
   list-style-type: none;
 }
 
+#layout.logged-out {
+  padding-left: 250px;
+}
+
 .nav-inner {
   padding: 0;
+}
+
+p {
+  line-height: 1.5em;
 }
 
 ul {
@@ -290,20 +299,18 @@ ul {
   height: auto;
 }
 
-.pure-menu-heading {
-
+#nav .pure-menu-heading {
+  font-size: 1.5em;
+  color: white;
   text-transform: none;
+  font-weight: bold;
 }
 
 #list {
   width:300px;
   height: 100%;
   border-right: 1px solid #ddd;
-  padding: 1em;
-}
-
-#nav .pure-menu-heading {
-  font-size: 100%;
+  padding: 0 1em;
 }
 
 .article {
@@ -312,4 +319,8 @@ ul {
 
 .article img {
   max-width: 100%;
+}
+
+form.search {
+  margin: .5em;
 }
