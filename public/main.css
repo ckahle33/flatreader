@@ -346,7 +346,7 @@ ul {
   max-width: 100%;
 }
 
-#list.sources li, .articles li, .tags li {
+#list.sources li, .articles li, .tags li, .feed li {
   padding: .5em;
   border-top: 1px solid #eee;
 }

@@ -8,8 +8,6 @@ set :user, "flatreader"
 set :deploy_to, "/home/flatreader"
 set :tmp_dir, "/home/flatreader/tmp"
 
-set :npm_flags, '--production'
-
 set :chruby_ruby, 'ruby-2.5.0'
 set :passenger_restart_with_touch, true
 
@@ -21,15 +19,3 @@ set :ssh_options, {
   auth_methods: ["publickey"],
   keys: ["/Users/cpk/.ssh/flatreader"]
 }
-
-after "deploy", "deploy:webpack"
-
-namespace :deploy do
-  task :webpack do
-    on roles(:app) do
-      within release_path do
-        execute("cd #{release_path} && yarn install && yarn build")
-      end
-    end
-  end
-end

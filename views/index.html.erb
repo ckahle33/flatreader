@@ -1,16 +1,22 @@
-<div class="pure-u-3-3">
-  <ul></ul>
-  <% @articles.each do |a| %>
-    <li>
-      <span>
-        <image class="favicon" src="<%= a.source.favicon %>"></image>
-      </span>
-      <span>
-        <%= a.published_at.strftime('%m/%d/%Y') if a.published_at %>
-      </span>
-      <a href="/articles/<%= a.id %>">
-        <%= a.title %>
-      </a>
-    </li>
-  <% end %>
+<div class="pure-g">
+  <div class="pure-u feed">
+    <h2>
+      My Feed
+    </h2>
+    <ul class="pure-menu-list">
+      <% @articles.each do |a| %>
+        <li class="pure-menu-item">
+          <span>
+            <image class="favicon" src="<%= a.source.favicon %>"></image>
+          </span>
+          <span>
+            <%= a.published_at.strftime('%m/%d/%Y') if a.published_at %>
+          </span>
+          <a href="/articles/<%= a.id %>">
+            <%= a.title %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
