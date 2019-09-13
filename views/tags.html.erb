@@ -1,16 +1,18 @@
-<div class="col col-9">
-  <h3>
-    All Tags
-  </h3>
-  <ul class="p-0">
-    <% @tags.each do |t| %>
-      <li>
-        <a href="<%= base_url %>/tag/<%= t.id %>">
-          <%= t.name %>
-          |
-          <%= t.sources.count %>
-        </a>
-      </li>
-    <% end %>
-  </ul>
+<div class="pure-g">
+  <div class="pure-u tags">
+    <h2>
+      All Tags
+    </h2>
+    <ul class="pure-menu-list">
+      <% @tags.each do |t| %>
+        <li class="pure-menu-item">
+          <a href="<%= base_url %>/tag/<%= t.id %>">
+            <%= t.name %>
+            |
+            <%= t.sources.count %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
