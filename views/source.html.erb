@@ -2,17 +2,17 @@
   <div class="pure-u">
     <h2>
       <span>
-        <image class="favicon" src="<%= @source.favicon %>"></image>
+        <image class="favicon" src="<%= @articles.first.source.favicon %>"></image>
       </span>
-      <%= @source.name %>
+      <%= @articles.first.source.name %>
     </h2>
     <!--/ should be queued in a worker
     -->
-    <a class="button-success pure-button" href="/refresh/<%= @source.id %>">
+    <a class="button-success pure-button" href="/refresh/<%= @articles.first.source.id %>">
       Refresh Feed
     </a>
     <div class="tags">
-      <% @source.tags.each do |t| %>
+      <% @articles.first.source.tags.each do |t| %>
         <a class="badge badge-info" href="/tag/<%= t.id %>">
           <%= t.name %>
         </a>

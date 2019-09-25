@@ -105,8 +105,7 @@ class App < Sinatra::Base
 
   get '/sources/:source_id' do
     authenticate!
-    @source   = Source.find(params['source_id'].to_i)
-    @articles = Article.where(source_id: params['source_id']).order(published_at: :desc).limit(30)
+    @articles = Article.where(source_id: params['source_id']).limit(30).order(published_at: :desc)
 
     erb :source, layout: :main
   end

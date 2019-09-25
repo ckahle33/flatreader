@@ -15,21 +15,23 @@ class Source < ActiveRecord::Base
 
   def refresh_feed
     Feedjira.logger.level = ::Logger::FATAL
-    xml = HTTParty.get(self.url).body
-    feed = Feedjira.parse(xml)
-    self.update_attributes(name: feed.title, favicon:favicon)
-    feed.entries.each do |article|
-      a = Article.find_or_initialize_by({
-        source_id:    self.id,
-        title:        article.try(:title)
-      })
-      a.update_attributes({
-        url:          article.try(:url) || article.try(:links),
-        body:         article.try(:content) || article.try(:summary),
-        published_at: article.try(:date) || article.try(:last_modified) || article.try(:updated)
-      })
-    rescue
+    if HTTParty.get(self.url).response.code == "429"
       next
+    else
+      xml = HTTParty.get(self.url).body
+      feed = Feedjira.parse(xml)
+      self.update_attributes(name: feed.title, favicon:favicon)
+      feed.entries.each do |article|
+        a = Article.find_or_initialize_by({
+          source_id:    self.id,
+          title:        article.try(:title)
+        })
+        a.update_attributes({
+          url:          article.try(:url) || article.try(:links),
+          body:         article.try(:content) || article.try(:summary),
+          published_at: article.try(:date) || article.try(:last_modified) || article.try(:updated)
+        })
+      end
     end
   end
 
