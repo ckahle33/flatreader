@@ -3,7 +3,7 @@ source "http://rubygems.org/"
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'rake'
-gem 'sidekiq', '~> 5.2.7'
+gem 'sidekiq', '~> 6.4.0'
 gem 'rufus-scheduler', '~> 3.4'
 gem 'sidekiq-cron'
 gem 'bcrypt'
